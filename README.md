@@ -1,7 +1,14 @@
 # Logistic-API
 
+## Banco de teste h2
+
+* Acesso: `localhost:8080/h2-console`;
+* Colocar JDBC URL: jdbc:h2:mem:testdb
+
 ## Actuator
+
 * Os endpoints do actuator é que vão permitir o monitoramento da aplicação, fornecendo informações tais como: health-check, coleta de métricas, http trace etc... Para verificar a saúde da aplicação, acesse `http://localhost:8080/actuator` para links;
+
 ```json
 {"_links":{"self":{"href":"http://localhost:8080/actuator","templated":false},
 "health":{"href":"http://localhost:8080/actuator/health","templated":false},
@@ -9,6 +16,7 @@
 "templated":true},"info":{"href":"http://localhost:8080/actuator/info",
 "templated":false}}}
 ```
+
 * Para obter a versão `http://localhost:8080/actuator/info`
 
 ## Documentação API
@@ -19,7 +27,6 @@
 
 * `http://localhost:8080/swagger-ui.html` Acessa o swagger-ui;
 
-
 ## standard-version
-* Test `npm run release -- --dry-run`
 
+* Test `npm run release -- --dry-run`
