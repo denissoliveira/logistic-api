@@ -68,6 +68,13 @@
 		    <artifactId>postgresql</artifactId>
 		    <scope>runtime</scope>
 		</dependency> -->
+		
+		<!-- flywaydb migração e versionamento de BD -->
+		<dependency>
+		    <groupId>org.flywaydb</groupId>
+		    <artifactId>flyway-core</artifactId>
+		    <version>6.5.5</version>
+		</dependency>
 
 		<!-- Documentação e swagger -->
 		<dependency>
@@ -101,6 +108,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- plugin>
+			    <groupId>org.flywaydb</groupId>
+			    <artifactId>flyway-maven-plugin</artifactId>
+			    <version>6.4.4</version>
+			    <configuration>
+			        <user>sa</user>
+			        <password></password>
+			        <schemas>
+			            <schema>testdb</schema>
+			        </schemas>
+			    </configuration>
+			</plugin-->
 		</plugins>
 	</build>
 
