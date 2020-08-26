@@ -1,0 +1,23 @@
+{
+  "name": "vitrinepi",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "VitrinePI API",
+  "main": "index.js",
+  "scripts": {
+    "release": "standard-version",
+    "test": "mvn -q test -P test"
+  },
+  "keywords": [
+    "API",
+    "REST",
+    "Java",
+    "Spring",
+    "SpringBoot",
+    "Test"
+  ],
+  "author": "INPI",
+  "license": "ISC",
+  "devDependencies": {
+    "standard-version": "^8.0.2"
+  }
+}
