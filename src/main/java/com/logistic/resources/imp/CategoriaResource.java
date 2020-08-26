@@ -1,26 +1,23 @@
 package com.logistic.resources.imp;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.logistic.domain.Categoria;
 import com.logistic.resources.IcategoriaResource;
+import com.logistic.services.CategoriaService;
 
 @RestController
 public class CategoriaResource implements IcategoriaResource {
+	
+	@Autowired
+	private CategoriaService categoriaService;
 
 	@Override
-	public List<Categoria> listar() {
-		
-		Categoria cat1 = new Categoria.Builder(1, "Informática").builder();
-		Categoria cat2 = new Categoria.Builder(2, "Escritório").builder();
-		
-		List<Categoria> lista = new ArrayList<>();
-		lista.add(cat1);
-		lista.add(cat2);
-		return lista;
+	public ResponseEntity<?> find(Integer id) {
+		Categoria categoria = categoriaService.find(id);
+		return ResponseEntity.ok().body(categoria);
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.logistic.resources;
 
-import java.util.List;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.logistic.contants.IConstants;
@@ -19,12 +19,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Categoria", description = "Categoria de produtos")
 public interface IcategoriaResource {
 	
-	@Operation(summary = "Listar Categorias", description = "Serviço Get para obter Listar de Categorias.")
+	@Operation(summary = "Buscar Categoria", description = "Serviço Get para obter Categoria.")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Lista de categoria encontrada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Categoria.class)) }),
-			@ApiResponse(responseCode = "404", description = "Lista não encontrada", content = @Content)
+			@ApiResponse(responseCode = "200", description = "Categoria encontrada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Categoria.class)) }),
+			@ApiResponse(responseCode = "404", description = "Categoria não encontrada", content = @Content)
 	})
-	@GetMapping
-	List<Categoria> listar();
+	@GetMapping(value = "/{id}")
+	ResponseEntity<?> find(@PathVariable Integer id);
 
 }
