@@ -1,0 +1,28 @@
+#Escolher a porta
+server:
+  port: 8080
+
+# Actuators
+management:
+ endpoint:
+  health:
+   show-details: always
+   group:
+    custom:
+     include: diskSpace,ping
+     show-components: always #when_authorized //autenticado
+     show-details: always #when_authorized //autenticado
+ endpoints:     
+  web:
+   exposure:
+    include: '*'  #health, info //configurar a exposição do health e info somente (example)
+info:
+  app:
+    name: "@project.name@ - @project.version@" # Exibe nome e versão de projeto no actuator
+
+# Configuração Spring Doc e swagger-ui
+springdoc:
+ api-docs:
+  path: /api-docs
+ swagger-ui:
+  operationsSorter: method
