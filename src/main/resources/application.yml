@@ -18,6 +18,12 @@ spring:
     properties:
       hibernate:
        format_sql: true
+  flyway:
+    user: sa
+    password:
+    url: jdbc:h2:mem:testdb
+    locations: classpath:db/migration
+    enabled: true
 
 # Actuators
 management:
