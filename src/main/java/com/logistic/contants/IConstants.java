@@ -5,6 +5,7 @@ public interface IConstants {
 	String ROOT_URL = "/api/";
 	String V1 = "v1/";
 	
-	String CATEGORIA = ROOT_URL + V1 + "categorias";
+	String CATEGORIAS = ROOT_URL + V1 + "categorias";
+	String CLIENTES = ROOT_URL + V1 + "clientes";
 }
 
