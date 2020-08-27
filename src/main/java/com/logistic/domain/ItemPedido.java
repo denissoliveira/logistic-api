@@ -3,9 +3,12 @@ package com.logistic.domain;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ItemPedido {
 	
+	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPk id = new ItemPedidoPk();
 	
@@ -46,6 +49,7 @@ public class ItemPedido {
 	}
 	
 	//Obter pedido diretamente
+	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
