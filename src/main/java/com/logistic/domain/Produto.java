@@ -2,7 +2,9 @@ package com.logistic.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -35,6 +38,9 @@ public class Produto implements Serializable{
 	)
 	private List<Categoria> categorias = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "id.produto")
+	private Set<ItemPedido> itens = new HashSet<>();
+	
 	//Padrão builder
 	public static class Builder {
 		
@@ -42,7 +48,10 @@ public class Produto implements Serializable{
 		private final Integer id;
 		private final String nome;
 		private final Double preco;
+		
+		//Opcional
 		private List<Categoria> categorias = new ArrayList<>();
+		private Set<ItemPedido> itens = new HashSet<>();
 		
 		public Builder(Integer id, String nome, Double preco) {
 			this.id = id;
@@ -50,8 +59,13 @@ public class Produto implements Serializable{
 			this.preco = preco;
 		}
 		
-		public Builder categorias(List<Categoria> categorias) {
+		public Builder setCategorias(List<Categoria> categorias) {
 			this.categorias = categorias;
+			return this;
+		}
+		
+		public Builder setItens(Set<ItemPedido> itens) {
+			this.itens = itens;
 			return this;
 		}
 		
@@ -65,9 +79,19 @@ public class Produto implements Serializable{
 		nome = builder.nome;
 		preco = builder.preco;
 		categorias = builder.categorias;
+		itens = builder.itens;
 	}
 
 	//Gets e Sets
+	
+	public List<Pedido> getPedidos() {
+		List<Pedido> lista = new ArrayList<>();
+		for (ItemPedido item : itens) {
+			lista.add(item.getPedido());
+		}
+		return lista;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -98,6 +122,14 @@ public class Produto implements Serializable{
 
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
+	}
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	@Override
