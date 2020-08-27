@@ -40,6 +40,8 @@ public class Cliente implements Serializable{
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
 	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	//Padrão builder
 	public static class Builder {
@@ -54,6 +56,7 @@ public class Cliente implements Serializable{
 		//Opcional
 		private List<Endereco> enderecos = new ArrayList<>();
 		private Set<String> telefones = new HashSet<>();
+		private List<Pedido> pedidos = new ArrayList<>();
 		
 		public Builder(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
 			this.id = id;
@@ -61,6 +64,11 @@ public class Cliente implements Serializable{
 			this.email = email;
 			this.cpfOuCnpj = cpfOuCnpj;
 			this.tipo = tipo;
+		}
+		
+		public Builder setPedidos(List<Pedido> pedidos) {
+			this.pedidos = pedidos;
+			return this;
 		}
 		
 		public Builder setEnderecos(List<Endereco> enderecos) {
@@ -86,6 +94,7 @@ public class Cliente implements Serializable{
 		tipo = builder.tipo.getCod();
 		enderecos = builder.enderecos;
 		telefones = builder.telefones;
+		pedidos = builder.pedidos;
 	}
 
 	//Gets e Sets
@@ -143,6 +152,14 @@ public class Cliente implements Serializable{
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	@Override
