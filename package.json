@@ -1,0 +1,23 @@
+{
+  "name": "logistic-api",
+  "version": "0.0.2-SNAPSHOT",
+  "description": "Logistic-API",
+  "main": "index.js",
+  "scripts": {
+    "release": "standard-version",
+    "test": "mvn -q test -P test"
+  },
+  "keywords": [
+    "API",
+    "REST",
+    "Java",
+    "Spring",
+    "SpringBoot",
+    "Test"
+  ],
+  "author": "Denis",
+  "license": "ISC",
+  "devDependencies": {
+    "standard-version": "^8.0.2"
+  }
+}
