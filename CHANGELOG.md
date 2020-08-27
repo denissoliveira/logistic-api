@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2-SNAPSHOT](https://github.com/denissoliveira/logistic-api/compare/v0.0.1-SNAPSHOT...v0.0.2-SNAPSHOT) (2020-08-27)
+
 ### 0.0.1-SNAPSHOT (2020-08-27)
 
 
