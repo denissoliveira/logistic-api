@@ -1,7 +1,7 @@
 {
-  "name": "vitrinepi",
+  "name": "Logistic-API",
   "version": "0.0.1-SNAPSHOT",
-  "description": "VitrinePI API",
+  "description": "Logistic-API",
   "main": "index.js",
   "scripts": {
     "release": "standard-version",
@@ -15,7 +15,7 @@
     "SpringBoot",
     "Test"
   ],
-  "author": "INPI",
+  "author": "Denis",
   "license": "ISC",
   "devDependencies": {
     "standard-version": "^8.0.2"

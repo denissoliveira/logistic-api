@@ -29,5 +29,3 @@ All notable changes to this project will be documented in this file. See [standa
 * Repositorio de pagamento e pedido ([0fda24f](https://github.com/denissoliveira/logistic-api/commit/0fda24f59210cbca682b89c3c32f50387f6794d4))
 * StandardException ([c8f13c8](https://github.com/denissoliveira/logistic-api/commit/c8f13c8b1287048ecdf393e971c0b6caf800d0ec))
 * Tratamento de exceção ([8604655](https://github.com/denissoliveira/logistic-api/commit/86046553e8d010e93c624eb5ec6c930e0ac0a4c1))
-
-### 0.0.1-SNAPSHOT (2020-08-15)
