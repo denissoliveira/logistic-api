@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.logistic.domain.Categoria;
 import com.logistic.resources.IcategoriaResource;
-import com.logistic.services.CategoriaService;
+import com.logistic.services.imp.CategoriaService;
 
 @RestController
 public class CategoriaResource implements IcategoriaResource {

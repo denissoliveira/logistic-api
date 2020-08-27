@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.logistic.domain.Cliente;
 import com.logistic.resources.IclienteResource;
-import com.logistic.services.ClienteService;
+import com.logistic.services.imp.ClienteService;
 
 @RestController
 public class ClienteResource implements IclienteResource {
