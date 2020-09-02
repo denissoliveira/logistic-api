@@ -38,4 +38,10 @@ public class CategoriaResource implements IcategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 
+	@Override
+	public ResponseEntity<Void> delete(Integer id) {
+		categoriaService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+
 }

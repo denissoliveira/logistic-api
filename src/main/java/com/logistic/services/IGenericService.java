@@ -7,5 +7,7 @@ public interface IGenericService<T> {
 	T insert(T obj);
 	
 	T update(T obj);
+	
+	void delete(Integer id);
 
 }
