@@ -14,6 +14,7 @@ import com.logistic.domain.Cidade;
 import com.logistic.domain.Cliente;
 import com.logistic.domain.Endereco;
 import com.logistic.domain.Estado;
+import com.logistic.domain.ItemPedido;
 import com.logistic.domain.Pagamento;
 import com.logistic.domain.PagamentoComBoleto;
 import com.logistic.domain.PagamentoComCartao;
@@ -26,6 +27,7 @@ import com.logistic.repositories.CidadeRepository;
 import com.logistic.repositories.ClienteRepository;
 import com.logistic.repositories.EnderecoRepository;
 import com.logistic.repositories.EstadoRepository;
+import com.logistic.repositories.ItemPedidoRepository;
 import com.logistic.repositories.PagamentoRepository;
 import com.logistic.repositories.PedidoRepository;
 import com.logistic.repositories.ProdutoRepository;
@@ -53,6 +55,8 @@ public class LogisticApiApplication implements CommandLineRunner{
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -115,6 +119,18 @@ public class LogisticApiApplication implements CommandLineRunner{
 		pedidoRepository.saveAll(asList(ped1,ped2));
 		pagamentoRepository.saveAll(asList(pagto1,pagto2));
 		
+		ItemPedido ip1 = new ItemPedido.Builder(ped1, p1, 0.00, 1, 2000.00).builder();
+		ItemPedido ip2 = new ItemPedido.Builder(ped1, p3, 0.00, 2, 80.00).builder();
+		ItemPedido ip3 = new ItemPedido.Builder(ped2, p2, 100.00, 1, 800.00).builder();
+		
+		ped1.getItens().addAll(asList(ip1,ip2));
+		ped2.getItens().addAll(asList(ip3));
+		
+		p1.getItens().addAll(asList(ip1));
+		p2.getItens().addAll(asList(ip3));
+		p3.getItens().addAll(asList(ip1));
+		
+		itemPedidoRepository.saveAll(asList(ip1,ip2,ip3));
 	}
 
 }

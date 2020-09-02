@@ -25,6 +25,6 @@ public interface IclienteResource {
 			@ApiResponse(responseCode = "404", description = "Cliente não encontrado", content = @Content)
 	})
 	@GetMapping(value = "/{id}")
-	ResponseEntity<?> find(@PathVariable Integer id);
+	ResponseEntity<Cliente> find(@PathVariable Integer id);
 
 }

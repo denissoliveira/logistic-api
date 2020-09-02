@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,13 +28,21 @@ public interface IcategoriaResource {
 			@ApiResponse(responseCode = "404", description = "Categoria não encontrada", content = @Content)
 	})
 	@GetMapping(value = "/{id}")
-	ResponseEntity<?> find(@PathVariable Integer id);
+	ResponseEntity<Categoria> find(@PathVariable Integer id);
 	
 	@Operation(summary = "Criar Categoria", description = "Serviço Post para Criar Categoria.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Categoria criada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Categoria.class)) })
 	})
 	@PostMapping
-	ResponseEntity<Void> insert(@RequestBody Categoria obj); 
+	ResponseEntity<Void> insert(@RequestBody Categoria obj);
+	
+	@Operation(summary = "Atualizar Categoria", description = "Serviço Put para atualizar Categoria.")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "204", description = "Categoria atualizado", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Categoria.class)) }),
+			@ApiResponse(responseCode = "404", description = "Categoria não encontrada", content = @Content)
+	})
+	@PutMapping(value = "/{id}")
+	ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id); 
 
 }

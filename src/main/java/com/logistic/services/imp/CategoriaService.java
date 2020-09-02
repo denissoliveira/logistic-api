@@ -27,4 +27,9 @@ public class CategoriaService implements ICategoriaService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+
+	@Override
+	public Categoria update(Categoria obj) {
+		return repo.save(find(obj.getId()));
+	}
 }

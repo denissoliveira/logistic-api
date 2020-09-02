@@ -27,4 +27,9 @@ public class PedidoService implements IPedidoService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+	@Override
+	public Pedido update(Pedido obj) {
+		return repo.save(find(obj.getId()));
+	}
 }

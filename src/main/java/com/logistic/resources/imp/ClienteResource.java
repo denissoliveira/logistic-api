@@ -15,7 +15,7 @@ public class ClienteResource implements IclienteResource {
 	private ClienteService clienteService;
 
 	@Override
-	public ResponseEntity<?> find(Integer id) {
+	public ResponseEntity<Cliente> find(Integer id) {
 		Cliente cliente = clienteService.find(id);
 		return ResponseEntity.ok().body(cliente);
 	}

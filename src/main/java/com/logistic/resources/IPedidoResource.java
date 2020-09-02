@@ -25,6 +25,6 @@ public interface IPedidoResource {
 			@ApiResponse(responseCode = "404", description = "Pedido não encontrada", content = @Content)
 	})
 	@GetMapping(value = "/{id}")
-	ResponseEntity<?> find(@PathVariable Integer id);
+	ResponseEntity<Pedido> find(@PathVariable Integer id);
 
 }

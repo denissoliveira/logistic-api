@@ -15,7 +15,7 @@ public class PedidoResource implements IPedidoResource {
 	private PedidoService pedidoService;
 
 	@Override
-	public ResponseEntity<?> find(Integer id) {
+	public ResponseEntity<Pedido> find(Integer id) {
 		Pedido pedido = pedidoService.find(id);
 		return ResponseEntity.ok().body(pedido);
 	}

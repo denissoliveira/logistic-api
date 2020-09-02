@@ -18,7 +18,7 @@ public class CategoriaResource implements IcategoriaResource {
 	private CategoriaService categoriaService;
 
 	@Override
-	public ResponseEntity<?> find(Integer id) {
+	public ResponseEntity<Categoria> find(Integer id) {
 		Categoria categoria = categoriaService.find(id);
 		return ResponseEntity.ok().body(categoria);
 	}
@@ -29,6 +29,13 @@ public class CategoriaResource implements IcategoriaResource {
 		//Monta a url com o id do obj criado
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build(); //Já retorna um 201 com a url
+	}
+
+	@Override
+	public ResponseEntity<Void> update(Categoria obj, Integer id) {
+		obj.setId(id);
+		obj = categoriaService.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 
 }

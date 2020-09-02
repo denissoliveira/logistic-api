@@ -27,4 +27,9 @@ public class ClienteService implements IClienteService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+	@Override
+	public Cliente update(Cliente obj) {
+		return repo.save(find(obj.getId()));
+	}
 }
