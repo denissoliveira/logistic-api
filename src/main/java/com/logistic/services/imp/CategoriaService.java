@@ -1,5 +1,6 @@
 package com.logistic.services.imp;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class CategoriaService implements ICategoriaService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possivel excluir uma categoria que possui produtos");
 		}
+	}
+
+	@Override
+	public List<Categoria> findAll() {
+		return repo.findAll();
 	}
 }

@@ -1,6 +1,8 @@
 package com.logistic.resources.imp;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.logistic.domain.Categoria;
+import com.logistic.dto.CategoriaDTO;
 import com.logistic.resources.IcategoriaResource;
 import com.logistic.services.imp.CategoriaService;
 
@@ -16,6 +19,13 @@ public class CategoriaResource implements IcategoriaResource {
 	
 	@Autowired
 	private CategoriaService categoriaService;
+	
+	@Override
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> categorias = categoriaService.findAll();
+		List<CategoriaDTO> categoriaDTOList = categorias.stream().map(obj -> new CategoriaDTO.Builder(obj).builder()).collect(Collectors.toList());
+		return ResponseEntity.ok().body(categoriaDTOList);
+	}
 
 	@Override
 	public ResponseEntity<Categoria> find(Integer id) {
