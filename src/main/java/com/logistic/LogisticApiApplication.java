@@ -18,7 +18,7 @@ import com.logistic.domain.ItemPedido;
 import com.logistic.domain.Pagamento;
 import com.logistic.domain.PagamentoComBoleto;
 import com.logistic.domain.PagamentoComCartao;
-import com.logistic.domain.Pedido;
+import com.logistic.domain.T;
 import com.logistic.domain.Produto;
 import com.logistic.domain.enums.EstadoPagamento;
 import com.logistic.domain.enums.TipoCliente;
@@ -110,8 +110,8 @@ public class LogisticApiApplication implements CommandLineRunner{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		Pedido ped1 = new Pedido.Builder(null, sdf.parse("30/09/1998 10:32"), cli1, e1).builder();
-		Pedido ped2 = new Pedido.Builder(null, sdf.parse("10/10/1998 19:35"), cli1, e2).builder();
+		T ped1 = new T.Builder(null, sdf.parse("30/09/1998 10:32"), cli1, e1).builder();
+		T ped2 = new T.Builder(null, sdf.parse("10/10/1998 19:35"), cli1, e2).builder();
 
 		cli1.getPedidos().addAll(asList(ped1,ped2));
 		

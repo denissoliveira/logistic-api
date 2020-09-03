@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.logistic.domain.Categoria;
+import com.logistic.dto.CategoriaDTO;
 import com.logistic.repositories.CategoriaRepository;
 import com.logistic.services.ICategoriaService;
 import com.logistic.services.exception.DataIntegrityException;
@@ -59,4 +60,10 @@ public class CategoriaService implements ICategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+
+	@Override
+	public Categoria fromDTO(CategoriaDTO objDTO) {
+		return new Categoria.Builder(objDTO.getId(), objDTO.getNome()).builder();
+	}
+	
 }

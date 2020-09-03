@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.logistic.domain.Pedido;
+import com.logistic.domain.T;
 import com.logistic.repositories.PedidoRepository;
 import com.logistic.services.IPedidoService;
 import com.logistic.services.exception.DataIntegrityException;
@@ -20,19 +20,19 @@ public class PedidoService implements IPedidoService {
 	private PedidoRepository repo;
 
 	@Override
-	public Pedido find(Integer id) {
-		Optional<Pedido> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
+	public T find(Integer id) {
+		Optional<T> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + T.class.getName()));
 	}
 	
 	@Override
-	public Pedido insert(Pedido obj) {
+	public T insert(T obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 	
 	@Override
-	public Pedido update(Pedido obj) {
+	public T update(T obj) {
 		return repo.save(find(obj.getId()));
 	}
 
@@ -47,7 +47,7 @@ public class PedidoService implements IPedidoService {
 	}
 	
 	@Override
-	public List<Pedido> findAll() {
+	public List<T> findAll() {
 		return repo.findAll();
 	}
 }

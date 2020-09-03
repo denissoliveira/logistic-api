@@ -3,9 +3,9 @@ package com.logistic.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.logistic.domain.Pedido;
+import com.logistic.domain.T;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
+public interface PedidoRepository extends JpaRepository<T, Integer>{
 
 }

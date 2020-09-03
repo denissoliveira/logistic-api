@@ -24,7 +24,7 @@ public class CategoriaResource implements IcategoriaResource {
 	@Override
 	public ResponseEntity<List<CategoriaDTO>> findAll() {
 		List<Categoria> categorias = categoriaService.findAll();
-		List<CategoriaDTO> categoriaDTOList = categorias.stream().map(obj -> new CategoriaDTO.Builder(obj).builder()).collect(Collectors.toList());
+		List<CategoriaDTO> categoriaDTOList = categorias.stream().map(obj -> new CategoriaDTO.Builder(obj).build()).collect(Collectors.toList());
 		return ResponseEntity.ok().body(categoriaDTOList);
 	}
 
@@ -35,7 +35,8 @@ public class CategoriaResource implements IcategoriaResource {
 	}
 
 	@Override
-	public ResponseEntity<Void> insert(Categoria obj) {
+	public ResponseEntity<Void> insert(CategoriaDTO objDTO) {
+		Categoria obj = categoriaService.fromDTO(objDTO);
 		obj = categoriaService.insert(obj);
 		//Monta a url com o id do obj criado
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -43,7 +44,8 @@ public class CategoriaResource implements IcategoriaResource {
 	}
 
 	@Override
-	public ResponseEntity<Void> update(Categoria obj, Integer id) {
+	public ResponseEntity<Void> update(CategoriaDTO objDTO, Integer id) {
+		Categoria obj = categoriaService.fromDTO(objDTO);
 		obj.setId(id);
 		obj = categoriaService.update(obj);
 		return ResponseEntity.noContent().build();
@@ -59,7 +61,7 @@ public class CategoriaResource implements IcategoriaResource {
 	public ResponseEntity<Page<CategoriaDTO>> findPage(Integer page, Integer linesPerPage, String orderBy,
 			String direction) {
 		Page<Categoria> list = categoriaService.findPage(page, linesPerPage, orderBy, direction);
-		Page<CategoriaDTO> listDTO = list.map(obj -> new CategoriaDTO.Builder(obj).builder());
+		Page<CategoriaDTO> listDTO = list.map(obj -> new CategoriaDTO.Builder(obj).build());
 		return ResponseEntity.ok().body(listDTO);
 	}
 

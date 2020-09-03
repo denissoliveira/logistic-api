@@ -22,7 +22,8 @@ public interface IclienteResource {
 	@Operation(summary = "Buscar Cliente", description = "Serviço Get para obter Cliente.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Cliente encontrado", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class)) }),
-			@ApiResponse(responseCode = "404", description = "Cliente não encontrado", content = @Content)
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor")
 	})
 	@GetMapping(value = "/{id}")
 	ResponseEntity<Cliente> find(@PathVariable Integer id);

@@ -23,9 +23,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Pedido implements Serializable {
+public class T implements Serializable {
 	
-	public Pedido() {}
+	public T() {}
 
 	private static final long serialVersionUID = 1L;
 
@@ -82,12 +82,12 @@ public class Pedido implements Serializable {
 			return this;
 		}
 		
-		public Pedido builder() {
-			return new Pedido(this);
+		public T builder() {
+			return new T(this);
 		}
 	}
 	
-	private Pedido(Builder builder) {
+	private T(Builder builder) {
 		id = builder.id;
 		instante = builder.instante;
 		pagamento = builder.pagamento;
@@ -170,7 +170,7 @@ public class Pedido implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pedido other = (Pedido) obj;
+		T other = (T) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
