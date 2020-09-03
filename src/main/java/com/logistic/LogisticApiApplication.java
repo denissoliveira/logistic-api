@@ -67,6 +67,11 @@ public class LogisticApiApplication implements CommandLineRunner{
 		
 		Categoria cat1 = new Categoria.Builder(null, "Informática").builder();
 		Categoria cat2 = new Categoria.Builder(null, "Escritório").builder();
+		Categoria cat3 = new Categoria.Builder(null, "Cama mesa banho").builder();
+		Categoria cat4 = new Categoria.Builder(null, "Eletrônicos").builder();
+		Categoria cat5 = new Categoria.Builder(null, "Jardinagem").builder();
+		Categoria cat6 = new Categoria.Builder(null, "Decoração").builder();
+		Categoria cat7 = new Categoria.Builder(null, "Perfumaria").builder();
 		
 		cat1.getProdutos().addAll(asList(p1,p2,p3));
 		cat2.getProdutos().addAll(asList(p2));
@@ -75,7 +80,7 @@ public class LogisticApiApplication implements CommandLineRunner{
 		p2.getCategorias().addAll(asList(cat1,cat2));
 		p3.getCategorias().addAll(asList(cat1));
 		
-		categoriaRepository.saveAll(asList(cat1,cat2));
+		categoriaRepository.saveAll(asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7));
 		produtoRepository.saveAll(asList(p1,p2,p3));
 		
 		Estado est1 = new Estado.Builder(null, "Minas Gerais").builder();

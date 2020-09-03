@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -52,6 +53,14 @@ public class CategoriaResource implements IcategoriaResource {
 	public ResponseEntity<Void> delete(Integer id) {
 		categoriaService.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@Override
+	public ResponseEntity<Page<CategoriaDTO>> findPage(Integer page, Integer linesPerPage, String orderBy,
+			String direction) {
+		Page<Categoria> list = categoriaService.findPage(page, linesPerPage, orderBy, direction);
+		Page<CategoriaDTO> listDTO = list.map(obj -> new CategoriaDTO.Builder(obj).builder());
+		return ResponseEntity.ok().body(listDTO);
 	}
 
 }
