@@ -1,6 +1,5 @@
 package com.logistic.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,24 +8,18 @@ import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.logistic.domain.enums.TipoCliente;
 
 @Entity
-public class Cliente implements Serializable{
+public class Cliente extends BaseAudit {
 	
+	private static final long serialVersionUID = 1434287474084177678L;
+
 	public Cliente() {}
 	
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
 	private String nome;
 	private String email;
 	private String cpfOuCnpj;
@@ -87,25 +80,17 @@ public class Cliente implements Serializable{
 	}
 	
 	private Cliente(Builder builder) {
-		id = builder.id;
-		nome = builder.nome;
-		email = builder.email;
-		cpfOuCnpj = builder.cpfOuCnpj;
-		tipo = builder.tipo == null ? null : builder.tipo.getCod();
-		enderecos = builder.enderecos;
-		telefones = builder.telefones;
-		pedidos = builder.pedidos;
+		this.setId(builder.id);
+		this.nome = builder.nome;
+		this.email = builder.email;
+		this.cpfOuCnpj = builder.cpfOuCnpj;
+		this.tipo = builder.tipo == null ? null : builder.tipo.getCod();
+		this.enderecos = builder.enderecos;
+		this.telefones = builder.telefones;
+		this.pedidos = builder.pedidos;
 	}
 
 	//Gets e Sets
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -163,34 +148,8 @@ public class Cliente implements Serializable{
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", cpfOuCnpj=" + cpfOuCnpj + ", tipo="
-				+ tipo + "]";
+		return "Cliente [id" + this.getId() + ", nome=" + nome + ", email=" + email + ", cpfOuCnpj=" + cpfOuCnpj + ", tipo=" + tipo + "]";
 	}
-	
+
 }

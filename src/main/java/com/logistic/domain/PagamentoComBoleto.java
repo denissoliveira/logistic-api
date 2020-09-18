@@ -12,6 +12,8 @@ import com.logistic.domain.enums.EstadoPagamento;
 @Entity
 public class PagamentoComBoleto extends Pagamento{
 	
+
+	private static final long serialVersionUID = 1L;
 	public PagamentoComBoleto() {}
 	
 	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
@@ -19,8 +21,6 @@ public class PagamentoComBoleto extends Pagamento{
 		this.dataVencimento = dataVencimento;
 		this.dataPagamento = dataPagamento;
 	}
-
-	private static final long serialVersionUID = 1L;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -30,6 +30,19 @@ public class PagamentoComBoleto extends Pagamento{
 	@Temporal(TemporalType.DATE)
 	private Date dataPagamento;
 
+	//Padrão builder
+	public static class Builder {
+		
+		public PagamentoComBoleto build() {
+			return new PagamentoComBoleto(this);
+		}
+	}
+	
+	private PagamentoComBoleto(Builder builder) {
+
+	}
+	
+	//Gets and Sets
 	public Date getDataVencimento() {
 		return dataVencimento;
 	}

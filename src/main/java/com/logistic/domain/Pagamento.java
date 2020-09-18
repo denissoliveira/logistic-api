@@ -1,7 +1,5 @@
 package com.logistic.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -15,7 +13,7 @@ import com.logistic.domain.enums.EstadoPagamento;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)// Cria uma tabela pra cada extendido desta classe
-public abstract class Pagamento implements Serializable {
+public abstract class Pagamento extends BaseAudit {
 	
 	public Pagamento() {}
 	
@@ -37,10 +35,12 @@ public abstract class Pagamento implements Serializable {
 	@MapsId //Vai manter o mesmo ID de pedido
 	private Pedido pedido;
 
+	@Override
 	public Integer getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(Integer id) {
 		this.id = id;
 	}
