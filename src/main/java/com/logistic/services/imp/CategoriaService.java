@@ -37,9 +37,15 @@ public class CategoriaService implements ICategoriaService {
 
 	@Override
 	public Categoria update(Categoria obj) {
-		return repo.save(find(obj.getId()));
+		Categoria newObj = find(obj.getId());
+		updateDate(newObj, obj);
+		return repo.save(newObj);
 	}
 	
+	private void updateDate(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
+	}
+
 	@Override
 	public void delete(Integer id) {
 		find(id);

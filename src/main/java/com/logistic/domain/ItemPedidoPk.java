@@ -13,16 +13,16 @@ public class ItemPedidoPk implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="pedido_id")
-	private T pedido;
+	private Pedido pedido;
 	
 	@ManyToOne
 	@JoinColumn(name="produto_id")
 	private Produto produto;
 	
-	public T getPedido() {
+	public Pedido getPedido() {
 		return pedido;
 	}
-	public void setPedido(T pedido) {
+	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
 	public Produto getProduto() {

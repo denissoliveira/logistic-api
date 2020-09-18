@@ -28,7 +28,7 @@ public class ItemPedido {
 		private Double preco;
 
 		
-		public Builder(T pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
+		public Builder(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
 			this.id.setPedido(pedido);
 			this.id.setProduto(produto);
 			this.desconto = desconto;
@@ -50,7 +50,7 @@ public class ItemPedido {
 	
 	//Obter pedido diretamente
 	@JsonIgnore
-	public T getPedido() {
+	public Pedido getPedido() {
 		return id.getPedido();
 	}
 	

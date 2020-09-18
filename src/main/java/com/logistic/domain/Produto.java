@@ -85,8 +85,8 @@ public class Produto implements Serializable{
 
 	//Gets e Sets
 	@JsonIgnore //Para não precisar serializar quando buscar
-	public List<T> getPedidos() {
-		List<T> lista = new ArrayList<>();
+	public List<Pedido> getPedidos() {
+		List<Pedido> lista = new ArrayList<>();
 		for (ItemPedido item : itens) {
 			lista.add(item.getPedido());
 		}

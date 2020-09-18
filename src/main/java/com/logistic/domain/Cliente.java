@@ -41,7 +41,7 @@ public class Cliente implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
-	private List<T> pedidos = new ArrayList<>();
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	//Padrão builder
 	public static class Builder {
@@ -56,17 +56,17 @@ public class Cliente implements Serializable{
 		//Opcional
 		private List<Endereco> enderecos = new ArrayList<>();
 		private Set<String> telefones = new HashSet<>();
-		private List<T> pedidos = new ArrayList<>();
+		private List<Pedido> pedidos = new ArrayList<>();
 		
 		public Builder(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
 			this.id = id;
 			this.nome = nome;
 			this.email = email;
 			this.cpfOuCnpj = cpfOuCnpj;
-			this.tipo = tipo;
+			this.tipo = tipo == null ? null : tipo;
 		}
 		
-		public Builder setPedidos(List<T> pedidos) {
+		public Builder setPedidos(List<Pedido> pedidos) {
 			this.pedidos = pedidos;
 			return this;
 		}
@@ -81,7 +81,7 @@ public class Cliente implements Serializable{
 			return this;
 		}
 		
-		public Cliente builder() {
+		public Cliente build() {
 			return new Cliente(this);
 		}
 	}
@@ -91,7 +91,7 @@ public class Cliente implements Serializable{
 		nome = builder.nome;
 		email = builder.email;
 		cpfOuCnpj = builder.cpfOuCnpj;
-		tipo = builder.tipo.getCod();
+		tipo = builder.tipo == null ? null : builder.tipo.getCod();
 		enderecos = builder.enderecos;
 		telefones = builder.telefones;
 		pedidos = builder.pedidos;
@@ -154,11 +154,11 @@ public class Cliente implements Serializable{
 		this.telefones = telefones;
 	}
 
-	public List<T> getPedidos() {
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public void setPedidos(List<T> pedidos) {
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 

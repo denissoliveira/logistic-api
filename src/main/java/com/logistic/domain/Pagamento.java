@@ -19,10 +19,9 @@ public abstract class Pagamento implements Serializable {
 	
 	public Pagamento() {}
 	
-	public Pagamento(Integer id, Integer estado, T pedido) {
-		super();
+	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		this.id = id;
-		this.estado = estado;
+		this.estado = estado == null ? null : estado.getCod();
 		this.pedido = pedido;
 	}
 
@@ -36,7 +35,7 @@ public abstract class Pagamento implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "pedido_id") //Vai manter o mesmo ID de pedido
 	@MapsId //Vai manter o mesmo ID de pedido
-	private T pedido;
+	private Pedido pedido;
 
 	public Integer getId() {
 		return id;
@@ -54,11 +53,11 @@ public abstract class Pagamento implements Serializable {
 		this.estado = estado.getCod();
 	}
 
-	public T getPedido() {
+	public Pedido getPedido() {
 		return pedido;
 	}
 
-	public void setPedido(T pedido) {
+	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
 

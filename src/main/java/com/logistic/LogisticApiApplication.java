@@ -18,7 +18,7 @@ import com.logistic.domain.ItemPedido;
 import com.logistic.domain.Pagamento;
 import com.logistic.domain.PagamentoComBoleto;
 import com.logistic.domain.PagamentoComCartao;
-import com.logistic.domain.T;
+import com.logistic.domain.Pedido;
 import com.logistic.domain.Produto;
 import com.logistic.domain.enums.EstadoPagamento;
 import com.logistic.domain.enums.TipoCliente;
@@ -96,7 +96,7 @@ public class LogisticApiApplication implements CommandLineRunner{
 		estadoRepository.saveAll(asList(est1,est2));
 		cidadeRepository.saveAll(asList(c1,c2,c3));
 		
-		Cliente cli1 = new Cliente.Builder(null, "Denis Oliveira", "email@example.com", "18379451015", TipoCliente.PESSOAFISICA).builder();
+		Cliente cli1 = new Cliente.Builder(null, "Denis Oliveira", "email@example.com", "18379451015", TipoCliente.PESSOAFISICA).build();
 		
 		cli1.getTelefones().addAll(asList("1562-1562","7584-9568"));
 		
@@ -110,13 +110,13 @@ public class LogisticApiApplication implements CommandLineRunner{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		T ped1 = new T.Builder(null, sdf.parse("30/09/1998 10:32"), cli1, e1).builder();
-		T ped2 = new T.Builder(null, sdf.parse("10/10/1998 19:35"), cli1, e2).builder();
+		Pedido ped1 = new Pedido.Builder(null, sdf.parse("30/09/1998 10:32"), cli1, e1).builder();
+		Pedido ped2 = new Pedido.Builder(null, sdf.parse("10/10/1998 19:35"), cli1, e2).builder();
 
 		cli1.getPedidos().addAll(asList(ped1,ped2));
 		
-		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO.getCod(), ped1, 6);
-		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE.getCod(), ped2, sdf.parse("11/10/1998 10:10"), sdf.parse("11/11/1998 10:10"));
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("11/10/1998 10:10"), sdf.parse("11/11/1998 10:10"));
 				
 		ped1.setPagamento(pagto1);
 		ped2.setPagamento(pagto2);

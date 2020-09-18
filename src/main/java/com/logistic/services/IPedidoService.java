@@ -1,7 +1,7 @@
 package com.logistic.services;
 
-import com.logistic.domain.T;
+import com.logistic.domain.Pedido;
 
-public interface IPedidoService extends IGenericService<T> {
+public interface IPedidoService extends IGenericService<Pedido> {
 
 }
