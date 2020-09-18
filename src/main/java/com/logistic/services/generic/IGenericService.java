@@ -1,4 +1,4 @@
-package com.logistic.services;
+package com.logistic.services.generic;
 
 import java.util.List;
 
@@ -11,13 +11,4 @@ public interface IGenericService<T> {
 	
 	T find(Integer id);
 	
-	@Transactional
-	T insert(T obj);
-	
-	@Transactional
-	T update(T obj);
-	
-	@Transactional
-	void delete(Integer id);
-
 }

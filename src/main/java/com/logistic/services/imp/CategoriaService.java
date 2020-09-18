@@ -69,7 +69,7 @@ public class CategoriaService implements ICategoriaService {
 
 	@Override
 	public Categoria fromDTO(CategoriaDTO objDTO) {
-		return new Categoria.Builder(objDTO.getId(), objDTO.getNome()).builder();
+		return new Categoria.Builder(objDTO.getId(), objDTO.getNome()).build();
 	}
 	
 }
