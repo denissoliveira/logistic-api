@@ -33,7 +33,7 @@ import com.logistic.repositories.PedidoRepository;
 import com.logistic.repositories.ProdutoRepository;
 
 @SpringBootApplication
-public class LogisticApiApplication implements CommandLineRunner{
+public class LogisticApiApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LogisticApiApplication.class, args);
@@ -65,13 +65,13 @@ public class LogisticApiApplication implements CommandLineRunner{
 		Produto p2 = new Produto.Builder(null, "Impressora", 800.00).builder();
 		Produto p3 = new Produto.Builder(null, "Mouse", 80.00).builder();
 		
-		Categoria cat1 = new Categoria.Builder(null, "Informática").builder();
-		Categoria cat2 = new Categoria.Builder(null, "Escritório").builder();
-		Categoria cat3 = new Categoria.Builder(null, "Cama mesa banho").builder();
-		Categoria cat4 = new Categoria.Builder(null, "Eletrônicos").builder();
-		Categoria cat5 = new Categoria.Builder(null, "Jardinagem").builder();
-		Categoria cat6 = new Categoria.Builder(null, "Decoração").builder();
-		Categoria cat7 = new Categoria.Builder(null, "Perfumaria").builder();
+		Categoria cat1 = new Categoria.Builder(null, "Informática").build();
+		Categoria cat2 = new Categoria.Builder(null, "Escritório").build();
+		Categoria cat3 = new Categoria.Builder(null, "Cama mesa banho").build();
+		Categoria cat4 = new Categoria.Builder(null, "Eletrônicos").build();
+		Categoria cat5 = new Categoria.Builder(null, "Jardinagem").build();
+		Categoria cat6 = new Categoria.Builder(null, "Decoração").build();
+		Categoria cat7 = new Categoria.Builder(null, "Perfumaria").build();
 		
 		cat1.getProdutos().addAll(asList(p1,p2,p3));
 		cat2.getProdutos().addAll(asList(p2));
