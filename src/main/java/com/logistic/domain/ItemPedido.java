@@ -48,6 +48,10 @@ public class ItemPedido {
 		preco = builder.preco;
 	}
 	
+	public double getSubTotal() {
+		return (preco - desconto) * quantidade;
+	}
+	
 	//Obter pedido diretamente
 	@JsonIgnore
 	public Pedido getPedido() {
