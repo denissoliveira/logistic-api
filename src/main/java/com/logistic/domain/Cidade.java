@@ -1,29 +1,18 @@
 package com.logistic.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-public class Cidade implements Serializable{
+public class Cidade extends BaseAudit {
 	
+	private static final long serialVersionUID = 4887092968810914134L;
+
 	public Cidade() {}
 	
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
 	private String nome;
 	
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="estado_id")
 	private Estado estado;
@@ -33,42 +22,38 @@ public class Cidade implements Serializable{
 		
 		//Requerido
 		private final Integer id;
-		private final String nome;
 		
 		//Opcional
+		private String nome;
 		private Estado estado;
 		
-		public Builder(Integer id, String nome) {
+		public Builder(Integer id) {
 			this.id = id;
-			this.nome = nome;
 		}
 		
 		//Opcional
+		public Builder nome(String nome) {
+			this.nome = nome;
+			return this;
+		}
+		
 		public Builder estado(Estado estado) {
 			this.estado = estado;
 			return this;
 		}
 		
-		public Cidade builder() {
+		public Cidade build() {
 			return new Cidade(this);
 		}
 	}
 	
 	private Cidade(Builder builder) {
-		id = builder.id;
-		nome = builder.nome;
-		estado = builder.estado;
+		this.setId(builder.id);
+		this.nome = builder.nome;
+		this.estado = builder.estado;
 	}
 
 	//Gets e Sets
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -86,33 +71,8 @@ public class Cidade implements Serializable{
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cidade other = (Cidade) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "Cidade [id=" + id + ", nome=" + nome + ", estado=" + estado + "]";
+		return "Cidade [id" + this.getId() + ", nome=" + nome + ", estado=" + estado + "]";
 	}
-
+	
 }

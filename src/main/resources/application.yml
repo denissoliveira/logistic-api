@@ -2,22 +2,27 @@
 server:
   port: 8080
   
-#Essa configuração deve ficar no teste
+#Essa configuração do H2 deve ficar no teste
 spring:
   h2:
     console:
       enabled: true
       path: /h2-console
   datasource:
-   url: jdbc:h2:mem:testdb
+   initialization-mode: never #always #para usar o data e schema para todos os bancos, por padrão ele funciona com H2
+   url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
    username: sa
    password: 
    driver-class-name: org.h2.Driver
+   platform: h2 #informar qual banco
   jpa:
+    generate-ddl: true
     show-sql: true
+    hibernate:
+      ddl-auto: none
     properties:
       hibernate:
-       format_sql: true
+       format_sql: false
   flyway:
     user: sa
     password:

@@ -1,30 +1,20 @@
 package com.logistic.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-public class Categoria implements Serializable{
+public class Categoria extends BaseAudit {
+	
+	private static final long serialVersionUID = -7066598196454042117L;
 	
 	public Categoria() {}
-	
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+
 	private String nome;
 	
-	@JsonManagedReference
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	
@@ -35,7 +25,7 @@ public class Categoria implements Serializable{
 		private final Integer id;
 		private final String nome;
 		
-		//
+		//optional
 		private List<Produto> produtos = new ArrayList<>();
 		
 		public Builder(Integer id, String nome) {
@@ -48,26 +38,18 @@ public class Categoria implements Serializable{
 			return this;
 		}
 		
-		public Categoria builder() {
+		public Categoria build() {
 			return new Categoria(this);
 		}
 	}
 	
 	private Categoria(Builder builder) {
-		id = builder.id;
-		nome = builder.nome;
-		produtos = builder.produtos;
+		this.setId(builder.id);
+		this.nome = builder.nome;
+		this.produtos = builder.produtos;
 	}
 	
 	//Gets e Sets
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
 	public String getNome() {
 		return nome;
 	}
@@ -85,33 +67,8 @@ public class Categoria implements Serializable{
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Categoria other = (Categoria) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + ", produtos=" + produtos + "]";
+		return "Categoria [id" + this.getId() + ", nome=" + nome + ", produtos=" + produtos + "]";
 	}
-
+	
 }

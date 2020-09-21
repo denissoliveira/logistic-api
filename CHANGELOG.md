@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-SNAPSHOT](https://github.com/denissoliveira/logistic-api/compare/v0.0.2-SNAPSHOT...v0.3.0-SNAPSHOT) (2020-09-21)
+
+
+### Features
+
+* adição de cliente ([e4f0a8f](https://github.com/denissoliveira/logistic-api/commit/e4f0a8f5b1aa036aac77715d3b6dd7eac0ff8276))
+* Adicionado ItemPedido a Pedido e Produto ([76d78ea](https://github.com/denissoliveira/logistic-api/commit/76d78ea7bce575d98a5c49c835d3d94de31c48ae))
+* ajuste e CRUD de cliente ([3efaaaf](https://github.com/denissoliveira/logistic-api/commit/3efaaafad7bb05377fb98fc8de6a7f166b3dd76f))
+* Ajuste interface resources ([f81af65](https://github.com/denissoliveira/logistic-api/commit/f81af65a3a54f220ffe52bdd0e04140fc396fba0))
+* Ajustes e criação resource pedido ([b095081](https://github.com/denissoliveira/logistic-api/commit/b0950810862dd41d237c59353a060c67bbd59086))
+* busca paginada de produtos ([29c6018](https://github.com/denissoliveira/logistic-api/commit/29c60182cf1092bbeeaddc163003d9c714426180))
+* Criado modelo ItenPedido ([cc0ae3b](https://github.com/denissoliveira/logistic-api/commit/cc0ae3beeb5c8ce6454288b551d4111ef1d2038e))
+* deletando uma categoria ([f41268a](https://github.com/denissoliveira/logistic-api/commit/f41268ad5592c09257a6c61a9e93b5247d2e12d5))
+* Excluindo um cliente sem pedidos ([67a7132](https://github.com/denissoliveira/logistic-api/commit/67a7132d195504c7ea45a4af6ebac4b2543f19ce))
+* generalização serviços ([8029510](https://github.com/denissoliveira/logistic-api/commit/8029510d059a459efa32b4c211bdd7e332cd1822))
+* listando categorias com dto ([c5c098e](https://github.com/denissoliveira/logistic-api/commit/c5c098e89aa4ff1c34a04b37e7c67eabe26eafe9))
+* paginação de categorias ([431627f](https://github.com/denissoliveira/logistic-api/commit/431627fe538d5a56dc11f7e0da8fc396417a8b13))
+* Repositorio de ItemPedido ([f8028a2](https://github.com/denissoliveira/logistic-api/commit/f8028a24b0404820b0ab361c87c931b80a2d3023))
+* Salvar categoria ([115e20a](https://github.com/denissoliveira/logistic-api/commit/115e20a1278012cdb0ef7b33673d394e0df57363))
+* update email de cliente ([a6c056f](https://github.com/denissoliveira/logistic-api/commit/a6c056f2f1d9211699a7ee5d04776ebea32e9181))
+* Validação de categoria ([09029d2](https://github.com/denissoliveira/logistic-api/commit/09029d2de6f08e0c0fa54d9546792785bf5caf7c))
+* validação de CNPJ e CPF usando anotação ([0d7a742](https://github.com/denissoliveira/logistic-api/commit/0d7a7423568beee886bf6a1f1a75bc1d23330d7f))
+* validação de email do cliente ([76e786f](https://github.com/denissoliveira/logistic-api/commit/76e786f56fd4f3b308ef51df79dedae1f2a4c989))
+
+
+### Bug Fixes
+
+* Ajustes para Json ([e5fb1e6](https://github.com/denissoliveira/logistic-api/commit/e5fb1e6f4146781333d44510557e479fc399ebc9))
+* resolvendo problema do jsonManage ([991d314](https://github.com/denissoliveira/logistic-api/commit/991d3145323721bede75c269531ddcfbdfec562f))
+
 ### [0.0.2-SNAPSHOT](https://github.com/denissoliveira/logistic-api/compare/v0.0.1-SNAPSHOT...v0.0.2-SNAPSHOT) (2020-08-27)
 
 ### 0.0.1-SNAPSHOT (2020-08-27)

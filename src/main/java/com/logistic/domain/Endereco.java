@@ -1,33 +1,25 @@
 package com.logistic.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Endereco implements Serializable {
+public class Endereco extends BaseAudit {
+
+	private static final long serialVersionUID = 1L;
 	
 	public Endereco() {}
-	
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
 	private String logradouro;
 	private String numero;
 	private String complemento;
 	private String bairro;
 	private String cep;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
@@ -66,28 +58,20 @@ public class Endereco implements Serializable {
 			return this;
 		}
 		
-		public Endereco builder() {
+		public Endereco build() {
 			return new Endereco(this);
 		}
 	}
 	
 	private Endereco(Builder builder) {
-		id = builder.id;
-		logradouro = builder.logradouro;
-		numero = builder.numero;
-		complemento = builder.complemento;
-		bairro = builder.bairro;
-		cep = builder.cep;
-		cliente = builder.cliente;
-		cidade = builder.cidade;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+		this.setId(builder.id);
+		this.logradouro = builder.logradouro;
+		this.numero = builder.numero;
+		this.complemento = builder.complemento;
+		this.bairro = builder.bairro;
+		this.cep = builder.cep;
+		this.cliente = builder.cliente;
+		this.cidade = builder.cidade;
 	}
 
 	public String getLogradouro() {
@@ -147,33 +131,8 @@ public class Endereco implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Endereco other = (Endereco) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", cep=" + cep + ", cliente=" + cliente + "]";
+		return "Endereco [id" + this.getId() + ", cep=" + cep + ", cliente=" + cliente + "]";
 	}
 	
 }

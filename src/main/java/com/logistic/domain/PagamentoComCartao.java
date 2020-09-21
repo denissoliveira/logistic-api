@@ -2,12 +2,14 @@ package com.logistic.domain;
 
 import javax.persistence.Entity;
 
+import com.logistic.domain.enums.EstadoPagamento;
+
 @Entity
 public class PagamentoComCartao extends Pagamento{
 	
 	public PagamentoComCartao() {}
 	
-	public PagamentoComCartao(Integer id, Integer estado, Pedido pedido, Integer numeroDeParcelas) {
+	public PagamentoComCartao(Integer id, EstadoPagamento estado, Pedido pedido, Integer numeroDeParcelas) {
 		super(id, estado, pedido);
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
