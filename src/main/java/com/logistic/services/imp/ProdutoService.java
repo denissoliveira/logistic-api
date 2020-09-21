@@ -42,21 +42,4 @@ public class ProdutoService implements IProdutoService {
 		return repo.findAll();
 	}
 
-	@Override
-	public Produto insert(Produto obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Produto update(Produto obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
-	}
 }

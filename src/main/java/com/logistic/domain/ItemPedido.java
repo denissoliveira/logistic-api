@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 public class ItemPedido {
 	
@@ -12,8 +14,13 @@ public class ItemPedido {
 	@EmbeddedId
 	private ItemPedidoPk id = new ItemPedidoPk();
 	
+	@Schema(description = "Valor do desconto.", example = "0.0")
 	private Double desconto;
+	
+	@Schema(description = "A quantidade de pedido.", example = "0")
 	private Integer quantidade;
+	
+	@Schema(description = "Preço do pedido.", example = "0.0")
 	private Double preco;
 	
 	public ItemPedido() {}
@@ -48,6 +55,7 @@ public class ItemPedido {
 		preco = builder.preco;
 	}
 	
+	@Schema(description = "SubTotal dos pedidos do cliente.", example = "0.0")
 	public double getSubTotal() {
 		return (preco - desconto) * quantidade;
 	}
@@ -58,9 +66,17 @@ public class ItemPedido {
 		return id.getPedido();
 	}
 	
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
+	}
+	
 	//Obter Produto diretamente
 	public Produto getProduto() {
 		return id.getProduto();
+	}
+	
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
 	}
 
 	public ItemPedidoPk getId() {

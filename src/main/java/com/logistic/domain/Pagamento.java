@@ -9,10 +9,12 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.logistic.domain.enums.EstadoPagamento;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)// Cria uma tabela pra cada extendido desta classe
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type") //informa que tem um campo adicional "@type", por ser uma classe abstrata, tem q passar qual o implemento a ser usado
 public abstract class Pagamento extends BaseAudit {
 	
 	public Pagamento() {}

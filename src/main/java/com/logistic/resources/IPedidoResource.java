@@ -1,8 +1,12 @@
 package com.logistic.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.logistic.contants.IConstants;
@@ -27,5 +31,13 @@ public interface IPedidoResource {
 	})
 	@GetMapping(value = "/{id}")
 	ResponseEntity<Pedido> find(@PathVariable Integer id);
+	
+	@Operation(summary = "Criar Pedido", description = "Serviço Post para Criar Pedido.")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Pedido criada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class)) }),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+	})
+	@PostMapping
+	ResponseEntity<Void> insert(@Valid @RequestBody Pedido obj);
 
 }

@@ -6,23 +6,28 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @MappedSuperclass
 public abstract class BaseAudit extends BaseEntity {
 
 	private static final long serialVersionUID = -3465965549823384527L;
 
-	// PARA O id
-	//@Schema(description = "O identificador do registro.", example = "5e49dcc31010b00b3383f8b6")
-
-	
 	// @Schema isso é usado para o swagger use o DTO ou se esta entidade só enviada direto para o "frontend"
-	//@Schema(description = "A data de criação do registro.", example = "2020-02-16 21:22:27")
+	@Schema(description = "A data de criação do registro.", example = "2020-02-16 21:22:27")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date createdAt;
-	//@Schema(description = "O login de quem criou o registro.", example = "admin")
+	
+	@Schema(description = "O login de quem criou o registro.", example = "admin")
 	private String creator;
-	//@Schema(description = "A data de atualização do registro.", example = "2020-02-16 21:22:27")
+	
+	@Schema(description = "A data de atualização do registro.", example = "2020-02-16 21:22:27")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date updatedAt;
-	//@Schema(description = "O login de quem atualizou o registro.", example = "admin")
+	
+	@Schema(description = "O login de quem atualizou o registro.", example = "admin")
 	private String updater;
 	
 	@PreUpdate

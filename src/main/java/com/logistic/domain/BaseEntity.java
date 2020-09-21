@@ -7,11 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = -1391877172232843495L;
 	
+	@Schema(description = "O identificador do registro.", example = "5e49dcc31010b00b3383f8b6")
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
