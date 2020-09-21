@@ -58,7 +58,7 @@ public class Endereco extends BaseAudit {
 			return this;
 		}
 		
-		public Endereco builder() {
+		public Endereco build() {
 			return new Endereco(this);
 		}
 	}

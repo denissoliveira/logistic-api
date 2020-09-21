@@ -86,9 +86,9 @@ public class LogisticApiApplication implements CommandLineRunner {
 		Estado est1 = new Estado.Builder(null, "Minas Gerais").builder();
 		Estado est2 = new Estado.Builder(null, "São Paulo").builder();
 		
-		Cidade c1 = new Cidade.Builder(null, "Uberlândia").estado(est1).builder();
-		Cidade c2 = new Cidade.Builder(null, "São Paulo").estado(est2).builder();
-		Cidade c3 = new Cidade.Builder(null, "Campinas").estado(est2).builder();
+		Cidade c1 = new Cidade.Builder(null).nome("Uberlândia").estado(est1).build();
+		Cidade c2 = new Cidade.Builder(null).nome("São Paulo").estado(est2).build();
+		Cidade c3 = new Cidade.Builder(null).nome("Campinas").estado(est2).build();
 		
 		est1.getCidades().addAll(asList(c1));
 		est2.getCidades().addAll(asList(c2,c3));
@@ -100,8 +100,8 @@ public class LogisticApiApplication implements CommandLineRunner {
 		
 		cli1.getTelefones().addAll(asList("1562-1562","7584-9568"));
 		
-		Endereco e1 = new Endereco.Builder(null, "Rua Flores", "300", "Apto 303", "Jardim", "265184865", c1).setCliente(cli1).builder();
-		Endereco e2 = new Endereco.Builder(null, "Avenida Matos", "105", "Sala 800", "Centro", "15263154", c1).setCliente(cli1).builder();
+		Endereco e1 = new Endereco.Builder(null, "Rua Flores", "300", "Apto 303", "Jardim", "265184865", c1).setCliente(cli1).build();
+		Endereco e2 = new Endereco.Builder(null, "Avenida Matos", "105", "Sala 800", "Centro", "15263154", c1).setCliente(cli1).build();
 		
 		cli1.getEnderecos().addAll(asList(e1,e2));
 		

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.logistic.domain.Cliente;
 import com.logistic.dto.ClienteDTO;
+import com.logistic.dto.ClienteNewDTO;
 import com.logistic.resources.IclienteResource;
 import com.logistic.services.imp.ClienteService;
 
@@ -35,7 +36,7 @@ public class ClienteResource implements IclienteResource {
 	}
 	
 	@Override
-	public ResponseEntity<Void> insert(ClienteDTO objDTO) {
+	public ResponseEntity<Void> insert(ClienteNewDTO objDTO) {
 		Cliente obj = clienteService.fromDTO(objDTO);
 		obj = clienteService.insert(obj);
 		//Monta a url com o id do obj criado

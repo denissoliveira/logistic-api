@@ -10,9 +10,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.logistic.domain.Cidade;
 import com.logistic.domain.Cliente;
+import com.logistic.domain.Endereco;
+import com.logistic.domain.enums.TipoCliente;
 import com.logistic.dto.ClienteDTO;
+import com.logistic.dto.ClienteNewDTO;
 import com.logistic.repositories.ClienteRepository;
+import com.logistic.repositories.EnderecoRepository;
 import com.logistic.services.IClienteService;
 import com.logistic.services.exception.DataIntegrityException;
 import com.logistic.services.exception.ObjectNotFoundException;
@@ -23,6 +28,9 @@ public class ClienteService implements IClienteService {
 	@Autowired
 	private ClienteRepository repo;
 	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
 	@Override
 	public Cliente find(Integer id) {
 		Optional<Cliente> obj = repo.findById(id);
@@ -32,7 +40,9 @@ public class ClienteService implements IClienteService {
 	@Override
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
-		return repo.save(obj);
+		obj = repo.save(obj);
+		enderecoRepository.saveAll(obj.getEnderecos());
+		return obj;
 	}
 	
 	@Override
@@ -71,5 +81,18 @@ public class ClienteService implements IClienteService {
 	@Override
 	public Cliente fromDTO(ClienteDTO objDTO) {
 		return new Cliente.Builder(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), null, null).build();
+	}
+	
+	@Override
+	public Cliente fromDTO(ClienteNewDTO objDTO) {
+		Cliente cli = new Cliente.Builder(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), objDTO.getCpfOuCnpj(), TipoCliente.toEnum(objDTO.getTipo())).build();
+		Cidade cid = new Cidade.Builder(objDTO.getCidadeId()).build();
+		Endereco end = new Endereco.Builder(null, objDTO.getLogradouro(), objDTO.getNumero(), objDTO.getComplemento(), objDTO.getBairro(), objDTO.getCep(), 
+				cid).setCliente(cli).build();
+		cli.getEnderecos().add(end);
+		cli.getTelefones().add(objDTO.getTelefone1());
+		cli.getTelefones().add(Optional.ofNullable(objDTO.getTelefone2()).orElse(null));
+		cli.getTelefones().add(Optional.ofNullable(objDTO.getTelefone3()).orElse(null));
+		return cli;
 	}
 }

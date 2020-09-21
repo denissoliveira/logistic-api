@@ -22,23 +22,27 @@ public class Cidade extends BaseAudit {
 		
 		//Requerido
 		private final Integer id;
-		private final String nome;
 		
 		//Opcional
+		private String nome;
 		private Estado estado;
 		
-		public Builder(Integer id, String nome) {
+		public Builder(Integer id) {
 			this.id = id;
-			this.nome = nome;
 		}
 		
 		//Opcional
+		public Builder nome(String nome) {
+			this.nome = nome;
+			return this;
+		}
+		
 		public Builder estado(Estado estado) {
 			this.estado = estado;
 			return this;
 		}
 		
-		public Cidade builder() {
+		public Cidade build() {
 			return new Cidade(this);
 		}
 	}

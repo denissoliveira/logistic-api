@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.logistic.contants.IConstants;
 import com.logistic.domain.Cliente;
 import com.logistic.dto.ClienteDTO;
+import com.logistic.dto.ClienteNewDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -55,7 +56,7 @@ public interface IclienteResource {
 			@ApiResponse(responseCode = "500", description = "Erro interno do servidor")
 	})
 	@PostMapping
-	ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDTO);
+	ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO);
 	
 	@Operation(summary = "Atualizar Cliente", description = "Serviço Put para atualizar Cliente.")
 	@ApiResponses(value = {
