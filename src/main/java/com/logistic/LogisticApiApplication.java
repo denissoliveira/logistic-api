@@ -61,9 +61,17 @@ public class LogisticApiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Produto p1 = new Produto.Builder(null, "Computador", 2000.00).builder();
-		Produto p2 = new Produto.Builder(null, "Impressora", 800.00).builder();
-		Produto p3 = new Produto.Builder(null, "Mouse", 80.00).builder();
+		Produto p1 = new Produto.Builder(null, "Computador", 2000.00).build();
+		Produto p2 = new Produto.Builder(null, "Impressora", 800.00).build();
+		Produto p3 = new Produto.Builder(null, "Mouse", 80.00).build();
+		Produto p4 = new Produto.Builder(null, "Mesa de escritório", 300.00).build();
+		Produto p5 = new Produto.Builder(null, "Toalha", 50.00).build();
+		Produto p6 = new Produto.Builder(null, "Colcha", 200.00).build();
+		Produto p7 = new Produto.Builder(null, "TV true color", 1200.00).build();
+		Produto p8 = new Produto.Builder(null, "Roçadeira", 800.00).build();
+		Produto p9 = new Produto.Builder(null, "Abajour", 100.00).build();
+		Produto p10 = new Produto.Builder(null, "Pendente", 180.00).build();
+		Produto p11 = new Produto.Builder(null, "Shampoo", 90.00).build();
 		
 		Categoria cat1 = new Categoria.Builder(null, "Informática").build();
 		Categoria cat2 = new Categoria.Builder(null, "Escritório").build();
@@ -74,14 +82,27 @@ public class LogisticApiApplication implements CommandLineRunner {
 		Categoria cat7 = new Categoria.Builder(null, "Perfumaria").build();
 		
 		cat1.getProdutos().addAll(asList(p1,p2,p3));
-		cat2.getProdutos().addAll(asList(p2));
+		cat2.getProdutos().addAll(asList(p2,p4));
+		cat3.getProdutos().addAll(asList(p5,p6));
+		cat4.getProdutos().addAll(asList(p1,p2,p3,p7));
+		cat5.getProdutos().addAll(asList(p8));
+		cat6.getProdutos().addAll(asList(p9,p10));
+		cat7.getProdutos().addAll(asList(p11));
 		
-		p1.getCategorias().addAll(asList(cat1));
-		p2.getCategorias().addAll(asList(cat1,cat2));
-		p3.getCategorias().addAll(asList(cat1));
+		p1.getCategorias().addAll(asList(cat1, cat4));
+		p2.getCategorias().addAll(asList(cat1,cat2, cat4));
+		p3.getCategorias().addAll(asList(cat1, cat4));
+		p4.getCategorias().addAll(asList(cat2));
+		p5.getCategorias().addAll(asList(cat3));
+		p6.getCategorias().addAll(asList(cat3));
+		p7.getCategorias().addAll(asList(cat4));
+		p8.getCategorias().addAll(asList(cat5));
+		p9.getCategorias().addAll(asList(cat6));
+		p10.getCategorias().addAll(asList(cat6));
+		p11.getCategorias().addAll(asList(cat7));
 		
 		categoriaRepository.saveAll(asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7));
-		produtoRepository.saveAll(asList(p1,p2,p3));
+		produtoRepository.saveAll(asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11));
 		
 		Estado est1 = new Estado.Builder(null, "Minas Gerais").builder();
 		Estado est2 = new Estado.Builder(null, "São Paulo").builder();

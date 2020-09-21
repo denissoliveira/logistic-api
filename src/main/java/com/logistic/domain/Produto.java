@@ -63,7 +63,7 @@ public class Produto extends BaseAudit {
 			return this;
 		}
 		
-		public Produto builder() {
+		public Produto build() {
 			return new Produto(this);
 		}
 	}

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.logistic.domain.Cidade;
 import com.logistic.domain.Cliente;
@@ -37,6 +38,7 @@ public class ClienteService implements IClienteService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
 	
+	@Transactional
 	@Override
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
@@ -45,6 +47,7 @@ public class ClienteService implements IClienteService {
 		return obj;
 	}
 	
+	@Transactional
 	@Override
 	public Cliente update(Cliente obj) {
 		Cliente newObj = find(obj.getId());
@@ -57,6 +60,7 @@ public class ClienteService implements IClienteService {
 		newObj.setEmail(obj.getEmail());
 	}
 
+	@Transactional
 	@Override
 	public void delete(Integer id) {
 		find(id);

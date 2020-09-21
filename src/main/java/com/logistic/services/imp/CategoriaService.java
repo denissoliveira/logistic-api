@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.logistic.domain.Categoria;
 import com.logistic.dto.CategoriaDTO;
@@ -29,12 +30,14 @@ public class CategoriaService implements ICategoriaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 
+	@Transactional
 	@Override
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 
+	@Transactional
 	@Override
 	public Categoria update(Categoria obj) {
 		Categoria newObj = find(obj.getId());
@@ -46,6 +49,7 @@ public class CategoriaService implements ICategoriaService {
 		newObj.setNome(obj.getNome());
 	}
 
+	@Transactional
 	@Override
 	public void delete(Integer id) {
 		find(id);

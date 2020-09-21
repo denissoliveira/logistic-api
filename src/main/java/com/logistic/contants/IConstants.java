@@ -8,5 +8,6 @@ public interface IConstants {
 	String CATEGORIAS = ROOT_URL + V1 + "categorias";
 	String CLIENTES = ROOT_URL + V1 + "clientes";
 	String PEDIDOS = ROOT_URL + V1 + "pedidos";
+	String PRODUTOS = ROOT_URL + V1 + "produtos";
 }
 
