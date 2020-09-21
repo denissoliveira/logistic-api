@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.logistic</groupId>
 	<artifactId>logistic-api</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.3.0-SNAPSHOT</version>
 	<name>logistic-api</name>
 	<description>Estudo de caso Java para curso de Modelagem Conceitual com UML</description>
 
