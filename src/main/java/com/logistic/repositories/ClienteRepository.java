@@ -7,4 +7,6 @@ import com.logistic.domain.Cliente;
 @Repository
 public interface ClienteRepository extends IBaseRepository<Cliente, Integer>{
 
+	Cliente findByEmail(String email);
+	
 }
