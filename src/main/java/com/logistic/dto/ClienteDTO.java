@@ -7,11 +7,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.logistic.domain.Cliente;
+import com.logistic.services.validation.ClienteUpdate;
 
 //Colocar no DTO (caso tenho um DTO) pode ser colocar na aplication.yml 
 //@JsonRootName(value = "book")
 //@JsonIgnoreProperties(ignoreUnknown = true) ignora campos desconhecidos
 //@JsonInclude(value = Include.NON_NULL) ele inclui o q não é nulo
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
