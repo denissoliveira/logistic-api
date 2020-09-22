@@ -25,6 +25,9 @@
 		<jacoco.utReportFolder>${project.build.directory}/jacoco/test</jacoco.utReportFolder>
 		<jacoco.utReportFile>${jacoco.utReportFolder}/test.exec</jacoco.utReportFile>
 		<junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
+		<flyway.user>sa</flyway.user>
+        <flyway.password></flyway.password>
+        <flyway.schemas>testdb</flyway.schemas>
 	</properties>
 
 	<dependencies>
@@ -35,6 +38,11 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.flywaydb</groupId>
+		    <artifactId>flyway-core</artifactId>
 		</dependency>
 		
 		<!-- Documentação e swagger -->
@@ -78,20 +86,11 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
 		    <scope>runtime</scope>
-		</dependency> -->
-		
-		<!-- flywaydb migração e versionamento de BD -->
-		<!-- dependency>
-		    <groupId>org.flywaydb</groupId>
-		    <artifactId>flyway-core</artifactId>
-		    <version>6.5.5</version>
-		</dependency-->
-
-		
+		</dependency>
 		
 		<!-- Devido ao Java11 -->
 		<dependency>
@@ -133,12 +132,11 @@
 			<!-- plugin>
 			    <groupId>org.flywaydb</groupId>
 			    <artifactId>flyway-maven-plugin</artifactId>
-			    <version>6.4.4</version>
 			    <configuration>
-			        <user>sa</user>
-			        <password></password>
+			        <user>${flyway.user}</user>
+			        <password>${flyway.password}</password>
 			        <schemas>
-			            <schema>testdb</schema>
+			            <schema>${flyway.schemas}</schema>
 			        </schemas>
 			    </configuration>
 			</plugin-->

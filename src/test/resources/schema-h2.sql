@@ -1,4 +1,4 @@
-;drop table if exists categoria CASCADE;
+drop table if exists categoria CASCADE;
 drop table if exists cidade CASCADE;
 drop table if exists cliente CASCADE; 
 drop table if exists endereco CASCADE; 

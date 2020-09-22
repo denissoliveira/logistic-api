@@ -1,19 +1,81 @@
-#Escolher a porta
 server:
   port: 8080
   
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+  profiles:
+    active:
+    - dev
+      
+---      
+      
+spring:
+  main:
+    banner-mode: off
+  profiles: dev
   datasource:
-   #initialization-mode: #always #para usar o data e schema para todos os bancos, por padrão ele funciona com H2
-   url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
-   username: sa
-   password: 
-   driver-class-name: org.h2.Driver
-   platform: h2 #informar qual banco
+   initialization-mode: never 
+   hikari:
+    maximum-pool-size: 5
+    connection-timeout: 20000
+   url: jdbc:postgresql://localhost:5432/logistic
+   username: postgres
+   password: admin
+   platform: postgres
+   driverClassName: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+       format_sql: false
+  flyway:
+    user: postgres
+    password: admin
+    url: jdbc:postgresql://localhost:5432/logistic
+    locations: classpath:db/migration
+    enabled: true
+    
+# Actuators
+management:
+ endpoint:
+  health:
+   show-details: always
+   group:
+    custom:
+     include: diskSpace,ping
+     show-components: always #when_authorized //autenticado
+     show-details: always #when_authorized //autenticado
+ endpoints:     
+  web:
+   exposure:
+    include: '*'  #health, info //configurar a exposição do health e info somente (example)
+info:
+  app:
+    name: "@project.name@ - @project.version@" # Exibe nome e versão de projeto no actuator
+
+# Configuração Spring Doc e swagger-ui
+springdoc:
+ api-docs:
+  path: /api-docs
+ swagger-ui:
+  operationsSorter: method
+  
+---      
+      
+spring:
+  profiles: prod
+  main:
+    banner-mode: console
+  datasource:
+   hikari:
+    maximum-pool-size: 5
+    connection-timeout: 20000
+   url: jdbc:postgresql://localhost:5432/postgres
+   username: postgres
+   password: admin
   jpa:
     generate-ddl: false
     show-sql: false
@@ -23,10 +85,6 @@ spring:
       hibernate:
        format_sql: false
   flyway: #Não esta sendo usado, deixado para fins de documentação de estudo
-    user: sa
-    password:
-    url: jdbc:h2:mem:testdb
-    locations: classpath:db/migration
     enabled: false
 
 # Actuators
