@@ -1,6 +1,7 @@
 package com.logistic.repository;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.logistic.repositories.CategoriaRepository;
 
+
+// Com o Junit 5 não precisa das anotações abaixo
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CategoriaRepositoryTest {

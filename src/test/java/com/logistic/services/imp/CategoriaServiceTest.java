@@ -9,19 +9,13 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.logistic.domain.Categoria;
 import com.logistic.repositories.CategoriaRepository;
 
-// Usar Spring ?? assim ele roda toda a aplicação
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class CategoriaServiceTest {
 	
 	@InjectMocks
@@ -49,6 +43,17 @@ public class CategoriaServiceTest {
 	@Test
 	public void buscarCategoriaPeloId () {
 		assertNotNull(categoriaService.find(ID));
+	}
+	
+	@Test
+	public void buscarCategoriaPeloIdQueNaoExiste () {
+		when(categoriaRepository.findById(ID)).thenReturn(Optional.ofNullable(null));
+		try {
+			assertNotNull(categoriaService.find(ID));
+		} catch (Exception e) {
+			//assertThat(e.getMessage(), CoreMatchers.is("Objeto não encontrado! Id: 1, Tipo: com.logistic.domain.Categoria"));
+			//assertThat
+		}
 	}
 	
 	@Test
