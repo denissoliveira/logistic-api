@@ -1,5 +1,6 @@
 package com.logistic.services.imp;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -7,16 +8,20 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.logistic.domain.Categoria;
 import com.logistic.repositories.CategoriaRepository;
 
 // Usar Spring ?? assim ele roda toda a aplicação
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class CategoriaServiceTest {
 	
 	@InjectMocks
@@ -41,19 +46,14 @@ public class CategoriaServiceTest {
 		when(categoriaRepository.findAll()).thenReturn(categoriaList);
 	}
 	
-//	@Test
-//	public void buscarCategoriaPeloId () {
-//		assertThat(categoriaService.find(ID)).isNotNull();
-//	}
-//	
-//	@Test
-//	public void buscarListaCategorias () {
-//		assertThat(categoriaService.findAll()).isNotNull();
-//	}
-
-//	@Test
-//	public void atuaçizarCategoria () {
-//		assertThat(categoriaService.update(categoria)).isNotNull();
-//	}
+	@Test
+	public void buscarCategoriaPeloId () {
+		assertNotNull(categoriaService.find(ID));
+	}
 	
+	@Test
+	public void buscarListaCategorias () {
+		assertNotNull(categoriaService.findAll());
+	}
+
 }
