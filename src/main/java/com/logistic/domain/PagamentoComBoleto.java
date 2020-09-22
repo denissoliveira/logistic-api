@@ -7,9 +7,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.logistic.domain.enums.EstadoPagamento;
 
 @Entity
+@JsonTypeName("pagamentoComBoleto") //tipo se ser indentificado pelo json (@type)
 public class PagamentoComBoleto extends Pagamento{
 	
 

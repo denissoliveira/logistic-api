@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0-SNAPSHOT](https://github.com/denissoliveira/logistic-api/compare/v0.3.0-SNAPSHOT...v0.4.0-SNAPSHOT) (2020-09-22)
+
+
+### Features
+
+* Ajuste nos serviços e cadastro de pedido ([59c63ed](https://github.com/denissoliveira/logistic-api/commit/59c63ed5c3735e937f15fb10bcf683acdb71582c))
+* Conexão com postegres e Migração usando flyway ([dcfbec2](https://github.com/denissoliveira/logistic-api/commit/dcfbec23a3a7ec1824996a87d42e936af47bd506))
+* Total e subtotal de pedidos ([5c7a71e](https://github.com/denissoliveira/logistic-api/commit/5c7a71ea9f3589b56aefd27298f65bb4884d4978))
+
 ## [0.3.0-SNAPSHOT](https://github.com/denissoliveira/logistic-api/compare/v0.0.2-SNAPSHOT...v0.3.0-SNAPSHOT) (2020-09-21)
 
 
