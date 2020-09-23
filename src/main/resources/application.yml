@@ -17,13 +17,13 @@ spring:
    hikari:
     maximum-pool-size: 5
     connection-timeout: 20000
-   url: jdbc:postgresql://localhost:5432/@flyway.db@
-   username: @flyway.user@
-   password: @flyway.password@
-   platform: @flyway.platform@
+   url: jdbc:postgresql://localhost:5432/@db.name@
+   username: @db.user@
+   password: @db.password@
+   platform: @db.platform@
    driverClassName: @db.driverClassName@
   jpa:
-    database: postgresql
+    database: @jpa.database@
     generate-ddl: false
     show-sql: true
     hibernate:
@@ -32,9 +32,9 @@ spring:
       hibernate:
        format_sql: false
   flyway:
-    user: postgres
-    password: admin
-    url: jdbc:postgresql://localhost:5432/@flyway.db@
+    user: @db.user@
+    password: @db.password@
+    url: jdbc:postgresql://localhost:5432/db.name@
     locations: classpath:db/migration
     enabled: true
   jackson:

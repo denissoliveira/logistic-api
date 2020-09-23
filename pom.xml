@@ -29,11 +29,15 @@
 		<jacoco.utReportFile>${jacoco.utReportFolder}/test.exec</jacoco.utReportFile>
 		<junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
 		
-		<flyway.user>postgres</flyway.user>
-        <flyway.password>admin</flyway.password>
-        <flyway.platform>postgres</flyway.platform>
-        <flyway.db>logistic</flyway.db>
+		<db.user>postgres</db.user>
+        <db.password>admin</db.password>
+        <db.platform>postgres</db.platform>
+        <db.name>logistic</db.name>
+        <db.port>5432</db.port>
+        <!-- db.host>jdbc:postgresql://localhost:</db.host-->
         <db.driverClassName>org.postgresql.Driver</db.driverClassName>
+        
+        <jpa.database>postgresql</jpa.database>
         
         <port>8080</port>
 	</properties>
