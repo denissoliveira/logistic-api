@@ -18,6 +18,7 @@ import com.logistic.repositories.ItemPedidoRepository;
 import com.logistic.repositories.PagamentoRepository;
 import com.logistic.repositories.PedidoRepository;
 import com.logistic.repositories.ProdutoRepository;
+import com.logistic.services.IEmailService;
 import com.logistic.services.IPedidoService;
 import com.logistic.services.exception.ObjectNotFoundException;
 
@@ -43,6 +44,9 @@ public class PedidoService implements IPedidoService {
 	
 	@Autowired
 	private BoletoService boletoService;
+	
+	@Autowired
+	private IEmailService emailService;
 	
 	@Override
 	public Pedido find(Integer id) {
@@ -78,7 +82,7 @@ public class PedidoService implements IPedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		//emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
 

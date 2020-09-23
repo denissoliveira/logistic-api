@@ -34,7 +34,7 @@ spring:
   flyway:
     user: @db.user@
     password: @db.password@
-    url: jdbc:postgresql://localhost:5432/db.name@
+    url: jdbc:postgresql://localhost:5432/@db.name@
     locations: classpath:db/migration
     enabled: true
   jackson:
@@ -43,9 +43,13 @@ spring:
       locale: pt-BR
       time-zone: America/Sao_Paulo  
 
+default:
+  sender: denissoliveira@gmail.com
+  recipient: denissoliveira@gmail.com
+
 # Logs    
 debug: true
-trace: true
+trace: false
 logging:
    level:
     com.logistic.resources.imp: DEBUG #WARN
