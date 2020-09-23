@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0-SNAPSHOT](https://github.com/denissoliveira/logistic-api/compare/v0.4.0-SNAPSHOT...v0.5.0-SNAPSHOT) (2020-09-23)
+
+
+### Features
+
+* Adicionado configuração de log (debug) ([8300be8](https://github.com/denissoliveira/logistic-api/commit/8300be8c436da598e1b88ffe749c64a5563500bb))
+* configuração de email ([3cbb8c2](https://github.com/denissoliveira/logistic-api/commit/3cbb8c2001df53226c98a4c9002581fdf1e0f672))
+* configurando e simulador envio de email ([430a9f3](https://github.com/denissoliveira/logistic-api/commit/430a9f37b41d254cce04afd731d0eaccd5bd8653))
+* email usando template thymeleaf ([8854abc](https://github.com/denissoliveira/logistic-api/commit/8854abc72e7fcec5b6efa9cb6726fe88d0bd0ead))
+
 ## [0.4.0-SNAPSHOT](https://github.com/denissoliveira/logistic-api/compare/v0.3.0-SNAPSHOT...v0.4.0-SNAPSHOT) (2020-09-22)
 
 
