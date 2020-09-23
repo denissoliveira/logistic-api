@@ -17,13 +17,13 @@ spring:
    hikari:
     maximum-pool-size: 5
     connection-timeout: 20000
-   url: jdbc:postgresql://localhost:5432/logistic
-   username: postgres
-   password: admin
-   platform: postgres
-   driverClassName: org.postgresql.Driver
+   url: jdbc:postgresql://localhost:5432/@db.name@
+   username: @db.user@
+   password: @db.password@
+   platform: @db.platform@
+   driverClassName: @db.driverClassName@
   jpa:
-    database: postgresql
+    database: @jpa.database@
     generate-ddl: false
     show-sql: true
     hibernate:
@@ -32,11 +32,56 @@ spring:
       hibernate:
        format_sql: false
   flyway:
-    user: postgres
-    password: admin
-    url: jdbc:postgresql://localhost:5432/logistic
+    user: @db.user@
+    password: @db.password@
+    url: jdbc:postgresql://localhost:5432/@db.name@
     locations: classpath:db/migration
     enabled: true
+  jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      default-property-inclusion: NON_NULL
+      locale: pt-BR
+      time-zone: America/Sao_Paulo
+  mail:
+    host: smtp.gmail.com
+    username: 
+    password: 
+    properties:
+      mail:
+        smtp:
+         auth: true
+         socketFactory:
+          port: 465
+          class: javax.net.ssl.SSLSocketFactory
+          fallback: false
+         starttls:
+          enable: true
+         ssl:
+          enable: true 
+
+default:
+  sender: denissoliveira@gmail.com
+  recipient: denissoliveira@gmail.com
+
+# Logs    
+debug: true
+trace: false
+logging:
+   level:
+    com.logistic.resources.imp: DEBUG #WARN
+    com.logistic.services.imp: DEBUG #WARN
+    org.hibernate: DEBUG #WARN
+# Server config      
+server:
+   compression:
+      enabled: true
+      min-response-size: 1
+   port: ${SERVER_PORT:@port@}
+   undertow:
+      accesslog:
+         dir: logs
+         enabled: false
+         pattern: '%t %a "%r" %s (%D ms)'    
     
 # Actuators
 management:
@@ -66,48 +111,7 @@ springdoc:
 ---      
       
 spring:
-  profiles: prod
   main:
     banner-mode: console
-  datasource:
-   hikari:
-    maximum-pool-size: 5
-    connection-timeout: 20000
-   url: jdbc:postgresql://localhost:5432/postgres
-   username: postgres
-   password: admin
-  jpa:
-    generate-ddl: false
-    show-sql: false
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-       format_sql: false
-  flyway: #Não esta sendo usado, deixado para fins de documentação de estudo
-    enabled: false
-
-# Actuators
-management:
- endpoint:
-  health:
-   show-details: always
-   group:
-    custom:
-     include: diskSpace,ping
-     show-components: always #when_authorized //autenticado
-     show-details: always #when_authorized //autenticado
- endpoints:     
-  web:
-   exposure:
-    include: '*'  #health, info //configurar a exposição do health e info somente (example)
-info:
-  app:
-    name: "@project.name@ - @project.version@" # Exibe nome e versão de projeto no actuator
-
-# Configuração Spring Doc e swagger-ui
-springdoc:
- api-docs:
-  path: /api-docs
- swagger-ui:
-  operationsSorter: method
+  profiles: prod
+ 

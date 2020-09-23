@@ -2,6 +2,8 @@ package com.logistic.resources.imp;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +18,14 @@ import com.logistic.services.imp.ProdutoService;
 @RestController
 public class ProdutoResource implements IProdutoResource {
 	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private ProdutoService produtoService;
 
 	@Override
 	public ResponseEntity<Produto> find(Integer id) {
+		logger.debug("resources: Obtendo produto por ID");
 		Produto pedido = produtoService.find(id);
 		return ResponseEntity.ok().body(pedido);
 	}
@@ -28,6 +33,7 @@ public class ProdutoResource implements IProdutoResource {
 	@Override
 	public ResponseEntity<Page<ProdutoDTO>> findPage(String nome, String categorias, Integer page, Integer linesPerPage, String orderBy,
 			String direction) {
+		logger.debug("resources: Obtendo produto paginado");
 		String nomeDecoded = URL.decodeParam(nome); // Converte o encode !20%"
 		List<Integer> ids = URL.decodeIntList(categorias); // pega o string e converte para o ids integer de categorias
 		Page<Produto> list = produtoService.search(nomeDecoded, ids, page, linesPerPage, orderBy, direction);

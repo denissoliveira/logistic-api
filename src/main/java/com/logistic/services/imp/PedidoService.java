@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,14 @@ import com.logistic.repositories.ItemPedidoRepository;
 import com.logistic.repositories.PagamentoRepository;
 import com.logistic.repositories.PedidoRepository;
 import com.logistic.repositories.ProdutoRepository;
+import com.logistic.services.IEmailService;
 import com.logistic.services.IPedidoService;
 import com.logistic.services.exception.ObjectNotFoundException;
 
 @Service
 public class PedidoService implements IPedidoService {
+	
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private PedidoRepository repo;
@@ -40,19 +45,25 @@ public class PedidoService implements IPedidoService {
 	@Autowired
 	private BoletoService boletoService;
 	
+	@Autowired
+	private IEmailService emailService;
+	
 	@Override
 	public Pedido find(Integer id) {
+		logger.debug("Buscando pedido por ID.");
 		Optional<Pedido> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
 	}
 	
 	@Override
 	public List<Pedido> findAll() {
+		logger.debug("Buscando todos os pedido.");
 		return repo.findAll();
 	}
 
 	@Override
 	public Pedido insert(Pedido obj) {
+		logger.debug("Salvando um pedido pedido.");
 		obj.setId(null);
 		obj.setInstante(new Date());
 		obj.setCliente(clienteRepository.findById(obj.getCliente().getId()).get());
@@ -72,6 +83,7 @@ public class PedidoService implements IPedidoService {
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
 		//emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
 		return obj;
 	}
 
