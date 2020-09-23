@@ -3,6 +3,8 @@ package com.logistic.services.imp;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,8 @@ import com.logistic.services.exception.ObjectNotFoundException;
 
 @Service
 public class ClienteService implements IClienteService {
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private ClienteRepository repo;
@@ -34,6 +38,7 @@ public class ClienteService implements IClienteService {
 	
 	@Override
 	public Cliente find(Integer id) {
+		logger.debug("Buscando cliente por ID");
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
@@ -41,6 +46,7 @@ public class ClienteService implements IClienteService {
 	@Transactional
 	@Override
 	public Cliente insert(Cliente obj) {
+		logger.debug("Salvando cliente");
 		obj.setId(null);
 		obj = repo.save(obj);
 		enderecoRepository.saveAll(obj.getEnderecos());
@@ -50,6 +56,7 @@ public class ClienteService implements IClienteService {
 	@Transactional
 	@Override
 	public Cliente update(Cliente obj) {
+		logger.debug("Atualizando cliente");
 		Cliente newObj = find(obj.getId());
 		updateDate(newObj, obj);
 		return repo.save(newObj);
@@ -63,6 +70,7 @@ public class ClienteService implements IClienteService {
 	@Transactional
 	@Override
 	public void delete(Integer id) {
+		logger.debug("Excluindo cliente");
 		find(id);
 		try {
 			repo.deleteById(id);
@@ -73,11 +81,13 @@ public class ClienteService implements IClienteService {
 	
 	@Override
 	public List<Cliente> findAll() {
+		logger.debug("Buscando todos os clientes");
 		return repo.findAll();
 	}
 
 	@Override
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		logger.debug("Obter cliente paginado");
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}

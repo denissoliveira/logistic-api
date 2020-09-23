@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ import com.logistic.services.exception.ObjectNotFoundException;
 
 @Service
 public class PedidoService implements IPedidoService {
+	
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private PedidoRepository repo;
@@ -42,17 +46,20 @@ public class PedidoService implements IPedidoService {
 	
 	@Override
 	public Pedido find(Integer id) {
+		logger.debug("Buscando pedido por ID.");
 		Optional<Pedido> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
 	}
 	
 	@Override
 	public List<Pedido> findAll() {
+		logger.debug("Buscando todos os pedido.");
 		return repo.findAll();
 	}
 
 	@Override
 	public Pedido insert(Pedido obj) {
+		logger.debug("Salvando um pedido pedido.");
 		obj.setId(null);
 		obj.setInstante(new Date());
 		obj.setCliente(clienteRepository.findById(obj.getCliente().getId()).get());

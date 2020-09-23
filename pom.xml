@@ -18,16 +18,24 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
+		
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
+		
 		<openapi-ui.version>1.4.4</openapi-ui.version>
+		
 		<project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
 		<jacoco.utReportFolder>${project.build.directory}/jacoco/test</jacoco.utReportFolder>
 		<jacoco.utReportFile>${jacoco.utReportFolder}/test.exec</jacoco.utReportFile>
 		<junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
-		<flyway.user>sa</flyway.user>
-        <flyway.password></flyway.password>
-        <flyway.schemas>testdb</flyway.schemas>
+		
+		<flyway.user>postgres</flyway.user>
+        <flyway.password>admin</flyway.password>
+        <flyway.platform>postgres</flyway.platform>
+        <flyway.db>logistic</flyway.db>
+        <db.driverClassName>org.postgresql.Driver</db.driverClassName>
+        
+        <port>8080</port>
 	</properties>
 
 	<dependencies>
@@ -129,17 +137,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- plugin>
-			    <groupId>org.flywaydb</groupId>
-			    <artifactId>flyway-maven-plugin</artifactId>
-			    <configuration>
-			        <user>${flyway.user}</user>
-			        <password>${flyway.password}</password>
-			        <schemas>
-			            <schema>${flyway.schemas}</schema>
-			        </schemas>
-			    </configuration>
-			</plugin-->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>

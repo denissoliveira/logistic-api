@@ -63,7 +63,6 @@
 
 * docker run -d --name postDb postgres:alpine -e POSTGRES_PASSWORD=admin -p 5432:5432
 
-
 * Acesse `http://localhost:8091` para admin do banco postegres.
 
 ## Testes
