@@ -10,8 +10,109 @@ spring:
       
 spring:
   main:
-    banner-mode: off
+    banner-mode: console
   profiles: dev
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+   #initialization-mode: never #always #para usar o data e schema para todos os bancos, por padrão ele funciona com H2
+   url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
+   username: sa
+   password: 
+   driver-class-name: org.h2.Driver
+   platform: h2 # dizer qual banco esta usando
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+       format_sql: false
+  flyway:
+    user: sa
+    password:
+    url: jdbc:h2:mem:testdb
+    locations: classpath:db/migration
+    enabled: false
+  jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      default-property-inclusion: NON_NULL
+      locale: pt-BR
+      time-zone: America/Sao_Paulo 
+  mail:
+    host: smtp.gmail.com
+    username: 
+    password: 
+    properties:
+      mail:
+        smtp:
+         auth: true
+         socketFactory:
+          port: 465
+          class: javax.net.ssl.SSLSocketFactory
+          fallback: false
+         starttls:
+          enable: true
+         ssl:
+          enable: true 
+
+default:
+  sender: denissoliveira@gmail.com
+  recipient: denissoliveira@gmail.com
+
+# Logs    
+debug: true
+trace: false
+logging:
+   level:
+    com.logistic.resources.imp: DEBUG #WARN
+    com.logistic.services.imp: DEBUG #WARN
+    org.hibernate: DEBUG #WARN
+# Server config      
+server:
+   compression:
+      enabled: true
+      min-response-size: 1
+   port: ${SERVER_PORT:@port@}
+   undertow:
+      accesslog:
+         dir: logs
+         enabled: false
+         pattern: '%t %a "%r" %s (%D ms)'    
+    
+# Actuators
+management:
+ endpoint:
+  health:
+   show-details: always
+   group:
+    custom:
+     include: diskSpace,ping
+     show-components: always #when_authorized //autenticado
+     show-details: always #when_authorized //autenticado
+ endpoints:     
+  web:
+   exposure:
+    include: '*'  #health, info //configurar a exposição do health e info somente (example)
+info:
+  app:
+    name: "@project.name@ - @project.version@" # Exibe nome e versão de projeto no actuator
+
+# Configuração Spring Doc e swagger-ui
+springdoc:
+ api-docs:
+  path: /api-docs
+ swagger-ui:
+  operationsSorter: method
+---      
+      
+spring:
+  main:
+    banner-mode: console
+  profiles: prod
   datasource:
    initialization-mode: never 
    hikari:
@@ -107,11 +208,4 @@ springdoc:
   path: /api-docs
  swagger-ui:
   operationsSorter: method
-  
----      
-      
-spring:
-  main:
-    banner-mode: console
-  profiles: prod
  

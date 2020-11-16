@@ -40,6 +40,8 @@
         <jpa.database>postgresql</jpa.database>
         
         <port>8080</port>
+        <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
+        
 	</properties>
 
 	<dependencies>
@@ -58,6 +60,18 @@
 	    <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!--  JWT -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>${jsonwebtoken.version}</version>
 		</dependency>
 		
 		<dependency>
