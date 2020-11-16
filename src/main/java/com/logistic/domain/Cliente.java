@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.logistic.domain.enums.Perfil;
 import com.logistic.domain.enums.TipoCliente;
 
 @Entity
@@ -19,7 +22,10 @@ public class Cliente extends BaseAudit {
 	
 	private static final long serialVersionUID = 1434287474084177678L;
 
-	public Cliente() {}
+	public Cliente() {
+		// Sendo todos tbm cliente 
+		addPerfil(Perfil.CLIENTE);
+	}
 	
 	private String nome;
 	private String email;
@@ -33,6 +39,10 @@ public class Cliente extends BaseAudit {
 	@ElementCollection
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "perfis")
+	private Set<Integer> perfis = new HashSet<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
@@ -90,6 +100,7 @@ public class Cliente extends BaseAudit {
 		this.cpfOuCnpj = builder.cpfOuCnpj;
 		this.senha = builder.senha;
 		this.tipo = builder.tipo == null ? null : builder.tipo.getCod();
+		this.perfis.add(Perfil.CLIENTE.getCod());
 		this.enderecos = builder.enderecos;
 		this.telefones = builder.telefones;
 		this.pedidos = builder.pedidos;
@@ -106,6 +117,14 @@ public class Cliente extends BaseAudit {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
 	}
 
 	public void setEmail(String email) {

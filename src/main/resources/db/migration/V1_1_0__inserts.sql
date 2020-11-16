@@ -37,8 +37,10 @@ insert into cidade (id, created_at, creator, updated_at, updater, estado_id, nom
 insert into cidade (id, created_at, creator, updated_at, updater, estado_id, nome) values (2, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 2, 'São Paulo');
 insert into cidade (id, created_at, creator, updated_at, updater, estado_id, nome) values (3, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 2, 'Campinas');
 insert into cliente (id, created_at, creator, updated_at, updater, cpf_ou_cnpj, email, nome, tipo, senha) values (1, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', '18379451015', 'email@example.com', 'Denis Oliveira', 1, '$2a$10$xVfjdwyYYOOyijkaYwJdWuPqTeYes3SJB1zJLdsPWf6R.eBa5WYwG');
+insert into cliente (id, created_at, creator, updated_at, updater, cpf_ou_cnpj, email, nome, tipo, senha) values (2, CURRENT_TIMESTAMP(), 'system', CURRENT_TIMESTAMP(), 'system', '11565899083', 'emailDaniel@example.com', 'Daniel Oliveira', 1, '$2a$10$xVfjdwyYYOOyijkaYwJdWuPqTeYes3SJB1zJLdsPWf6R.eBa5WYwG');
 insert into endereco (id, created_at, creator, updated_at, updater, bairro, cep, cidade_id, cliente_id, complemento, logradouro, numero) values (1, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 'Jardim', '265184865', 1, 1, 'Apto 303', 'Rua Flores', '300');
 insert into endereco (id, created_at, creator, updated_at, updater, bairro, cep, cidade_id, cliente_id, complemento, logradouro, numero) values (2, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 'Centro', '15263154', 1, 1, 'Sala 800', 'Avenida Matos', '105');
+insert into endereco (id, created_at, creator, updated_at, updater, bairro, cep, cidade_id, cliente_id, complemento, logradouro, numero) values (3, CURRENT_TIMESTAMP(), 'system', CURRENT_TIMESTAMP(), 'system', 'Centro', '15263154', 1, 2, 'Sala 805', 'Avenida Matos', '115');
 insert into telefone (cliente_id, telefones) values (1, '1562-1562');
 insert into telefone (cliente_id, telefones) values (1, '7584-9568');
 insert into pedido (id, created_at, creator, updated_at, updater, cliente_id, endereco_id, instante) values (1, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 1, 1, CURRENT_TIMESTAMP);
@@ -50,7 +52,6 @@ insert into pagamento_com_boleto (data_pagamento, data_vencimento, pedido_id) va
 insert into item_pedido (desconto, preco, quantidade, pedido_id, produto_id) values (0, 2000, 1, 1, 1);
 insert into item_pedido (desconto, preco, quantidade, pedido_id, produto_id) values (0, 80, 2, 1, 3);
 insert into item_pedido (desconto, preco, quantidade, pedido_id, produto_id) values (100, 800, 1, 2, 2);
-
 ALTER SEQUENCE categoria_id_seq RESTART WITH 8;
 ALTER SEQUENCE cidade_id_seq RESTART WITH 4;
 ALTER SEQUENCE cliente_id_seq RESTART WITH 2;
@@ -58,3 +59,7 @@ ALTER SEQUENCE endereco_id_seq RESTART WITH 3;
 ALTER SEQUENCE estado_id_seq RESTART WITH 3;
 ALTER SEQUENCE pedido_id_seq RESTART WITH 3;
 ALTER SEQUENCE produto_id_seq RESTART WITH 12;
+insert into perfis (cliente_id, perfis) values (1, 1);
+insert into perfis (cliente_id, perfis) values (1, 2);
+insert into perfis (cliente_id, perfis) values (2, 2);
+

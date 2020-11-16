@@ -98,7 +98,14 @@ public class ClienteService implements IClienteService {
 	
 	@Override
 	public Cliente fromDTO(ClienteNewDTO objDTO) {
-		Cliente cli = new Cliente.Builder(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), objDTO.getCpfOuCnpj(), pe.encode(objDTO.getSenha()), TipoCliente.toEnum(objDTO.getTipo())).build();
+		Cliente cli = new Cliente.Builder(
+					objDTO.getId(), 
+					objDTO.getNome(), 
+					objDTO.getEmail(), 
+					objDTO.getCpfOuCnpj(), 
+					pe.encode(objDTO.getSenha()), 
+					TipoCliente.toEnum(objDTO.getTipo())
+				).build();
 		Cidade cid = new Cidade.Builder(objDTO.getCidadeId()).build();
 		Endereco end = new Endereco.Builder(null, objDTO.getLogradouro(), objDTO.getNumero(), objDTO.getComplemento(), objDTO.getBairro(), objDTO.getCep(), 
 				cid).setCliente(cli).build();

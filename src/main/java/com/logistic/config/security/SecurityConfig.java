@@ -27,7 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	//Endereços publicos que podem se acessados
 	private static final String[] PUBLIC_MATCHERS = {
-			"/h2-console/**"
+			"/h2-console/**",
+			IConstants.ROOT_URL + IConstants.V1+"clientes/**",
 
 	};
 	
