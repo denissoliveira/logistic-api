@@ -36,7 +36,7 @@ insert into estado (id, created_at, creator, updated_at, updater, nome) values (
 insert into cidade (id, created_at, creator, updated_at, updater, estado_id, nome) values (1, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 1, 'Uberlândia');
 insert into cidade (id, created_at, creator, updated_at, updater, estado_id, nome) values (2, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 2, 'São Paulo');
 insert into cidade (id, created_at, creator, updated_at, updater, estado_id, nome) values (3, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 2, 'Campinas');
-insert into cliente (id, created_at, creator, updated_at, updater, cpf_ou_cnpj, email, nome, tipo) values (1, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', '18379451015', 'email@example.com', 'Denis Oliveira', 1);
+insert into cliente (id, created_at, creator, updated_at, updater, cpf_ou_cnpj, email, nome, tipo, senha) values (1, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', '18379451015', 'email@example.com', 'Denis Oliveira', 1, '$2a$10$xVfjdwyYYOOyijkaYwJdWuPqTeYes3SJB1zJLdsPWf6R.eBa5WYwG');
 insert into endereco (id, created_at, creator, updated_at, updater, bairro, cep, cidade_id, cliente_id, complemento, logradouro, numero) values (1, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 'Jardim', '265184865', 1, 1, 'Apto 303', 'Rua Flores', '300');
 insert into endereco (id, created_at, creator, updated_at, updater, bairro, cep, cidade_id, cliente_id, complemento, logradouro, numero) values (2, CURRENT_TIMESTAMP, 'system', CURRENT_TIMESTAMP, 'system', 'Centro', '15263154', 1, 1, 'Sala 800', 'Avenida Matos', '105');
 insert into telefone (cliente_id, telefones) values (1, '1562-1562');

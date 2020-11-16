@@ -25,6 +25,7 @@ public class Cliente extends BaseAudit {
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
+	@JsonIgnore	private String senha;
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -45,6 +46,7 @@ public class Cliente extends BaseAudit {
 		private final String nome;
 		private final String email;
 		private final String cpfOuCnpj;
+		private String senha;
 		private TipoCliente tipo;
 		
 		//Opcional
@@ -52,11 +54,12 @@ public class Cliente extends BaseAudit {
 		private Set<String> telefones = new HashSet<>();
 		private List<Pedido> pedidos = new ArrayList<>();
 		
-		public Builder(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+		public Builder(Integer id, String nome, String email, String cpfOuCnpj, String senha, TipoCliente tipo) {
 			this.id = id;
 			this.nome = nome;
 			this.email = email;
 			this.cpfOuCnpj = cpfOuCnpj;
+			this.senha = senha;
 			this.tipo = tipo == null ? null : tipo;
 		}
 		
@@ -85,6 +88,7 @@ public class Cliente extends BaseAudit {
 		this.nome = builder.nome;
 		this.email = builder.email;
 		this.cpfOuCnpj = builder.cpfOuCnpj;
+		this.senha = builder.senha;
 		this.tipo = builder.tipo == null ? null : builder.tipo.getCod();
 		this.enderecos = builder.enderecos;
 		this.telefones = builder.telefones;
@@ -146,6 +150,14 @@ public class Cliente extends BaseAudit {
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@Override

@@ -28,6 +28,7 @@ CREATE TABLE public.cliente (
 	cpf_ou_cnpj varchar(255) NULL,
 	email varchar(255) NULL,
 	nome varchar(255) NULL,
+	senha varchar(255) NULL,
 	tipo int4 NULL,
 	CONSTRAINT cliente_pkey PRIMARY KEY (id)
 );

@@ -18,11 +18,15 @@ public class ClienteNewDTO implements Serializable {
 	
 	public ClienteNewDTO(Cliente obj) {
 		this.id = obj.getId();
+		this.senha = obj.getSenha();
 		this.nome = obj.getNome(); 
 		this.email = obj.getEmail();
 	}
 	
 	private Integer id;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
+	private String senha;
 	
 	@NotEmpty(message = "Preenchimento obrigatório")
 	@Size(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
@@ -66,17 +70,20 @@ public class ClienteNewDTO implements Serializable {
 		private final Integer id;
 		private final String nome;
 		private final String email;
+		private final String senha;
 		
-		public Builder(Integer id, String nome, String email) {
+		public Builder(Integer id, String nome, String email, String senha) {
 			this.id = id;
 			this.nome = nome;
 			this.email = email;
+			this.senha = senha;
 		}
 		
 		public Builder(Cliente obj) {
 			this.id = obj.getId();
 			this.nome = obj.getNome(); 
 			this.email = obj.getEmail();
+			this.senha = obj.getSenha();
 		}
 		
 		public ClienteNewDTO build() {
@@ -88,6 +95,7 @@ public class ClienteNewDTO implements Serializable {
 		id = builder.id;
 		nome = builder.nome;
 		email = builder.email;
+		senha = builder.senha;
 	}
 
 	public Integer getId() {
@@ -200,6 +208,14 @@ public class ClienteNewDTO implements Serializable {
 
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 }

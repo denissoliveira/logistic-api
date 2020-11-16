@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,11 +31,9 @@ public class ClienteService implements IClienteService {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private ClienteRepository repo;
-	
-	@Autowired
-	private EnderecoRepository enderecoRepository;
+	@Autowired private BCryptPasswordEncoder pe;
+	@Autowired private ClienteRepository repo;
+	@Autowired private EnderecoRepository enderecoRepository;
 	
 	@Override
 	public Cliente find(Integer id) {
@@ -94,12 +93,12 @@ public class ClienteService implements IClienteService {
 
 	@Override
 	public Cliente fromDTO(ClienteDTO objDTO) {
-		return new Cliente.Builder(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), null, null).build();
+		return new Cliente.Builder(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), null, null, null).build();
 	}
 	
 	@Override
 	public Cliente fromDTO(ClienteNewDTO objDTO) {
-		Cliente cli = new Cliente.Builder(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), objDTO.getCpfOuCnpj(), TipoCliente.toEnum(objDTO.getTipo())).build();
+		Cliente cli = new Cliente.Builder(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), objDTO.getCpfOuCnpj(), pe.encode(objDTO.getSenha()), TipoCliente.toEnum(objDTO.getTipo())).build();
 		Cidade cid = new Cidade.Builder(objDTO.getCidadeId()).build();
 		Endereco end = new Endereco.Builder(null, objDTO.getLogradouro(), objDTO.getNumero(), objDTO.getComplemento(), objDTO.getBairro(), objDTO.getCep(), 
 				cid).setCliente(cli).build();
