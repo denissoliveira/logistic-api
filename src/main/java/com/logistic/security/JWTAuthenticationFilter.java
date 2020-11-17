@@ -21,6 +21,9 @@ import com.logistic.dto.CredenciaisDTO;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	
+	static final String TOKEN_PREFIX = "Bearer ";
+	static final String HEADER_STRING = "Authorization";
+	
 	private AuthenticationManager authenticationManager;
     
     private JWTUtil jwtUtil;
@@ -52,8 +55,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Authentication authResult) throws IOException, ServletException {
 		String username = ((UserSpringSecurity) authResult.getPrincipal()).getUsername();
         String token = jwtUtil.generateToken(username);
-        response.addHeader("Authorization", "Bearer " + token);
-        response.addHeader("access-control-expose-headers", "Authorization");
+        response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        response.addHeader("access-control-expose-headers", HEADER_STRING);
 	}
 	
 	//Para retorna o erro correto 

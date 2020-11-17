@@ -41,8 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	//Endereços publicos que podem se acessados
 	private static final String[] PUBLIC_MATCHERS = {
 			"/h2-console/**",
-			"/login**",
-			"/login/**",
 			"/actuator/**",
 			"/api-docs/**",
 			"/swagger-ui/**"
@@ -57,7 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private static final String[] PUBLIC_MATCHERS_POST = {
 			IConstants.ROOT_URL + IConstants.V1+"clientes/**",
-			IConstants.ROOT_URL + IConstants.V1+"auth/forgot/**"
+			IConstants.ROOT_URL + IConstants.V1+"auth/forgot/**",
+			"/login/**",
+			"/login**"
 	};
 	
 	/*
@@ -77,10 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHERS).permitAll()
-			.anyRequest().authenticated()
-			.and()
-			.formLogin()
-			.loginPage("/login");
+			.anyRequest().authenticated();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
