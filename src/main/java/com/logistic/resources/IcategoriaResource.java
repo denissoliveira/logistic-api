@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,7 @@ public interface IcategoriaResource {
 	@GetMapping(value = "/{id}")
 	ResponseEntity<Categoria> find(@PathVariable Integer id);
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@Operation(summary = "Criar Categoria", description = "Serviço Post para Criar Categoria.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Categoria criada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Categoria.class)) }),
@@ -57,6 +59,7 @@ public interface IcategoriaResource {
 	@PostMapping
 	ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDTO);
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@Operation(summary = "Atualizar Categoria", description = "Serviço Put para atualizar Categoria.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "204", description = "Categoria atualizado", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Categoria.class)) }),
@@ -66,6 +69,7 @@ public interface IcategoriaResource {
 	@PutMapping(value = "/{id}")
 	ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDTO, @PathVariable Integer id); 
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@Operation(summary = "Deletar Categoria", description = "Serviço delete para deletar Categoria.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "204", description = "Categoria deletada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Categoria.class)) }),

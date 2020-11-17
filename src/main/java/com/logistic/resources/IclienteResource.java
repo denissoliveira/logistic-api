@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Cliente", description = "Cliente de produtos")
 public interface IclienteResource {
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@Operation(summary = "Clientes", description = "Serviço Get para lista Cliente.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "List Categoria encontrada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class)) }),
@@ -67,6 +69,7 @@ public interface IclienteResource {
 	@PutMapping(value = "/{id}")
 	ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDTO, @PathVariable Integer id); 
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@Operation(summary = "Deletar Cliente", description = "Serviço delete para deletar Cliente.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "204", description = "Cliente deletada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class)) }),
@@ -76,6 +79,7 @@ public interface IclienteResource {
 	@DeleteMapping(value = "/{id}")
 	ResponseEntity<Void> delete(@PathVariable Integer id);
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@Operation(summary = "Clientes paginada", description = "Serviço Get para lista Cliente paginada.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "List Cliente paginada encontrada", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class)) }),

@@ -17,12 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.logistic.domain.Cidade;
 import com.logistic.domain.Cliente;
 import com.logistic.domain.Endereco;
+import com.logistic.domain.enums.Perfil;
 import com.logistic.domain.enums.TipoCliente;
 import com.logistic.dto.ClienteDTO;
 import com.logistic.dto.ClienteNewDTO;
 import com.logistic.repositories.ClienteRepository;
 import com.logistic.repositories.EnderecoRepository;
+import com.logistic.security.UserSpringSecurity;
 import com.logistic.services.IClienteService;
+import com.logistic.services.exception.AuthorizationException;
 import com.logistic.services.exception.DataIntegrityException;
 import com.logistic.services.exception.ObjectNotFoundException;
 
@@ -38,6 +41,10 @@ public class ClienteService implements IClienteService {
 	@Override
 	public Cliente find(Integer id) {
 		logger.debug("Buscando cliente por ID");
+		UserSpringSecurity user = UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
